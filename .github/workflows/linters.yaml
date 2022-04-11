@@ -1,0 +1,82 @@
+name: Linters
+
+on:
+
+  push:
+    branches: main
+
+jobs:
+
+  shell-linter:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Linter
+        run: make test-lint-shellscript
+
+  python-linter:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Install pylint
+        run: pip install -U pylint
+
+      - name: Install isort
+        run: pip install -U isort
+
+      - name: Install flake8
+        run: pip install -U flake8
+
+      - name: Install bandit
+        run: pip install -U bandit
+
+      - name: check_packages_*.py dependencies
+        run: pip install -U requests
+
+      # Need to use Python system to audio and apt packages
+      - name: Horizonte dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install libasound2-dev
+          pip install -U psutil pyalsaaudio
+
+      - name: check_packages_apt.py dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install python3-apt
+
+      - name: Linter
+        run: make test-lint-python
+
+  lua-linter:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Lua environment setup
+        uses: leafo/gh-actions-lua@v8.0.0
+        with:
+          luaVersion: "5.1.5"
+
+      - name: luarocks setup
+        uses: leafo/gh-actions-luarocks@v4.0.0
+
+      - name: Install luacheck
+        run: luarocks install luacheck
+
+      - name: Linter
+        run: make test-lint-lua

@@ -1,0 +1,2 @@
+[bandit]
+exclude: ./.vim/plugged/,./test_*.py

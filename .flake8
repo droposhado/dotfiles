@@ -1,0 +1,12 @@
+[flake8]
+exclude =
+    .git,
+    .vim/plugged,
+    __pycache__,
+    docs/source/conf.py,
+    old,
+    build,
+    dist
+extend-ignore = E203
+max-complexity = 10
+max-line-length = 88

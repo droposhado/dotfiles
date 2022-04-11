@@ -1,0 +1,116 @@
+# espanso configuration file
+
+# This is the default configuration file, change it as you like it
+# You can refer to the official documentation:
+# https://espanso.org/docs/
+
+secure_input_notification: false
+
+# https://espanso.org/docs/configuration/#customizing-the-toggle-key 
+toggle_key: OFF
+
+# https://espanso.org/docs/configuration/#hiding-the-icon
+# show_icon: false
+
+# Matches are the substitution rules, when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+
+  # Dates - ISO 8601
+
+  - trigger: ":ds"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d"
+
+  - trigger: ":df"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d-%H-%M"
+
+  - trigger: ":di"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%dT%H:%M:%SZ"
+
+  - trigger: ":hs"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%H:%M"
+
+  - trigger: ":hf"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%H:%M:%S"
+
+  - trigger: ":ws"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-w%W"
+
+  - trigger: ":wf"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-w%W-%d"
+
+  # Emojis
+
+  - trigger: ":brabo"
+    replace: "ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿) ᕗ"
+
+  - trigger: ":eita"
+    replace: "(ó﹏ò｡)"
+
+  - trigger: ":fodase"
+    replace: "¯\\(ツ)/¯"
+
+  - trigger: ":medo"
+    replace: "😱"
+
+  - trigger: ":vai"
+    replace: "ᕕ( ͡° ͜ʖ ͡°)ᕗ"
+
+  - trigger: ":lol"
+    replace: "🤣🤣🤣🤣🤣🤣🤣"
+
+  - trigger: ":amei"
+    replace: "🥰"
+
+  - trigger: ":ok"
+    replace: "👍"
+
+  - trigger: ":festa"
+    replace: "🥳"
+
+  - trigger: ":sens"
+    replace: "( ͡° ͜ʖ ͡°)"
+
+  - trigger: ":o_o"
+    replace: "ಠ_ಠ"
+
+  - trigger: ":vic"
+    replace: "✌️"
+
+  - trigger: ":vixe"
+    replace: "😅"

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# This is an example of what adding gitleaks to a pre-commit hook would look like.
+# https://github.com/zricethezav/gitleaks/blob/master/examples/pre-commit.example
+cmd="gitleaks detect --verbose --redact"
+$cmd
+if [ $? -eq 1 ]; then
+cat <<\EOF
+ERROR: gitleaks has detected sensitive information in your changes.
+EOF
+exit 1
+fi
+
+exit 0

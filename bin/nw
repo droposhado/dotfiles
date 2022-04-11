@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# open software in new workspace
+# with next number based on last
+
+WS_CUR=$(i3-msg -t get_workspaces | tr , '\n' | grep '"num":' | cut -d : -f 2 | sort -rn | head -1)
+
+WS_NXT=$((WS_CUR+1))
+
+i3-msg workspace "${WS_NXT}" -q
+
+exec "$1" 2>&1 &

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# git versions < 2.28 not have a option on config:
+# [init]
+#     defaultBranch = <branch-name>
+#
+# and no param:
+#
+# --initial-branch <branch-name>
+
+git init
+
+# change and create if not exists
+git checkout -b main
+
+# delete old unused master
+git branch -d master

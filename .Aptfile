@@ -1,0 +1,87 @@
+# essentials
+git
+build-essential
+openssh-client
+
+# font utils
+fontconfig
+
+# fonts (terminal)
+fonts-firacode
+
+# fonts (japanese support)
+fonts-takao-mincho
+fonts-takao
+
+# https://en.wikipedia.org/wiki/Help:Multilingual_support_(East_Asian)
+fonts-arphic-ukai
+fonts-arphic-uming
+fonts-ipafont-mincho
+fonts-ipafont-gothic
+fonts-unfonts-core
+
+# i3
+xorg
+i3-wm
+i3lock
+suckless-tools
+dunst
+
+# i3 volume binds
+alsa-utils
+
+# dmenu opens
+xdg-utils
+
+# file system
+cifs-utils
+exfat-fuse
+exfat-utils
+jmtpfs
+ntfs-3g
+
+# dev
+bison
+gdb
+meld
+tmux
+vim
+
+# pyenv - https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+libssl-dev
+zlib1g-dev
+libbz2-dev
+libreadline-dev
+libsqlite3-dev
+libncursesw5-dev
+xz-utils
+#tk-dev
+libxml2-dev
+libxmlsec1-dev
+libffi-dev
+liblzma-dev
+
+# volume control
+pavucontrol
+
+# sofware packages
+firefox-esr
+rxvt-unicode
+mlocate
+transmission
+vlc
+vlc-data
+vlc-plugin-notify
+zathura
+xclip
+
+# horizonte
+python3-alsaaudio
+python3-psutil
+
+# amd/ati graphics - https://wiki.debian.org/AtiHowTo
+firmware-amd-graphics
+libgl1-mesa-dri
+libglx-mesa0
+mesa-vulkan-drivers
+xserver-xorg-video-all

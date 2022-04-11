@@ -1,0 +1,12 @@
+# .inputrc
+# This file is related to auto complete using tab, see:
+# https://ss64.com/bash/syntax-inputrc.html
+
+# Make Tab autocomplete regardless of filename case
+set completion-ignore-case on
+
+# List all matches in case multiple possible completions are possible
+set show-all-if-ambiguous on
+
+# Immediately add a trailing slash when autocompleting symlinks to directories
+set mark-symlinked-directories on

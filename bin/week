@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Get week number to now or specific date
+
+if [ -z "$1" ]; then
+    date +"%V"
+else
+    date -j -f "%Y%m%d" +"%V" "$1"
+fi

@@ -1,0 +1,28 @@
+name: Daily check update assets
+
+on:
+
+  schedule:
+    - cron:  '01 00 * * *'
+
+  workflow_dispatch:
+
+jobs:
+  updates:
+    runs-on: ubuntu-latest
+    env:
+      PREFIX_TEST: test_
+
+    steps:
+
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - run: make update-install-scripts
+
+      - run: make update-hammerspoon-lua
+
+      - run: make update-fonts
+
+      - name: Diff install scripts 
+        run: make test-diff-install-script

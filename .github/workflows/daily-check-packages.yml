@@ -1,0 +1,43 @@
+name: Daily check packages
+
+on:
+
+  schedule:
+    - cron:  '01 00 * * *'
+
+  workflow_dispatch:
+
+jobs:
+
+  check-homebrew-packages:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10.0
+
+      - name: Install dependencies 
+        run: pip install requests
+
+      - name: Check packages
+        run: make test-check-homebrew-packages
+
+  check-apt-packages:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10.0
+
+      - name: Check packages
+        run: make test-check-apt-packages

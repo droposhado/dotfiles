@@ -1,0 +1,69 @@
+[user]
+    name = Flaverton Rodrigues Rosa
+    email = sign@droposhado.org
+    signingkey = F4887B7535FDC16C
+
+[alias]
+    a = add
+    b = branch
+    ba = branch -a
+    c = commit
+    cl = clone
+    cm = commit -m
+    co = checkout
+    cor = checkout HEAD --
+    di = diff
+    din = diff --name-only
+    dic = diff --cached
+    i = init
+    lf = ls-files
+    l = log
+    lo = log --graph --oneline
+    lr = ls-remote
+    r = remote
+    rv = remote -v
+    s = status
+    sub = submodule
+    ph = push
+    pl = pull
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+    pager = true
+
+[color "branch"]
+    remote = yellow
+
+[color "diff"]
+    meta = yellow
+    frag = magenta
+    old = red
+    new = green
+
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
+
+[commit]
+    gpgsign = true
+
+[core]
+    editor = vim
+
+[diff]
+    guitool = meld
+
+[gpg]
+    program = gpg
+
+[init]
+    defaultBranch = main
+    templateDir = ~/.config/git/templates
+
+[merge]
+    tool = meld

@@ -1,0 +1,41 @@
+function s3size() {
+  aws s3api list-objects --bucket "$1" --output json --query "sum(Contents[].Size)"
+}
+
+function s3size2() {
+  aws s3 ls --summarize --human-readable --recursive s3://"$1"
+}
+
+# Check if service use a specified port
+function checkport() {
+  if [ -z "$1" ]; then
+    netstat -tuln
+  else
+    netstat -tulp | grep -i "$1"
+  fi
+}
+
+# List devices with mount point and labels
+# sudo is required for more detailed information, as FSTYPE and LABEL
+# Fstype in general and LABEL in identifying the name Kindle
+function devices() {
+  sudo lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL
+}
+
+function foldersize() {
+  du -sh "$1"
+}
+
+function filesize() {
+  du -h "$1" | sort -rh | head -10
+}
+
+function jlint() {
+  python -m json.tool < "$1"
+}
+
+# Show octal number permission of file
+# http://askubuntu.com/a/152003
+function octop() {
+  stat -f "%a %n" "$1"
+}

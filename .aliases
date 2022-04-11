@@ -1,0 +1,24 @@
+
+alias ..="cd .."
+alias ...="cd ../.."
+
+alias diff="diff -u"
+
+alias docker-cleanup=" docker compose down && docker compose rm && docker volume prune -f"
+
+alias g='git'
+
+# Default on Ubuntu, but extend for all
+alias grep="grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn"
+
+alias l="ls -lh"
+alias la="ls -lha"
+
+alias locate="locate -i"
+
+alias pss="ps aux | grep -i"
+
+# macOS
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    alias updatedb="/usr/libexec/locate.updatedb"
+fi

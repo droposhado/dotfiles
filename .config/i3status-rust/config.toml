@@ -1,0 +1,50 @@
+[icons]
+name = "awesome5"
+
+[icons.overrides]
+cpu = "\uf2db"
+memory_mem = "\uf538"
+time = "\uf133"
+
+[theme]
+name = "nord-dark"
+
+[theme.overrides]
+idle_fg = "#d8dee9"
+
+[[block]]
+block = "cpu"
+interval = 1
+format = "{utilization}"
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{mem_used}/{cached}/{mem_total_used}"
+clickable = false
+
+[[block]]
+block = "net"
+format = "{graph_down}"
+interval = 1
+
+[[block]]
+block = "sound"
+headphones_indicator = true
+
+[[block]]
+block = "time"
+interval = 5
+format = "%Y-W%V-%u"
+
+[[block]]
+block = "time"
+interval = 5
+format = "%m-%d %H:%M"
+icons_format = ""
+
+[[block]]
+block = "battery"
+interval = 10
+format = "{percentage} {time}"
+if_command = "test -e /sys/class/power_supply/BAT0"
