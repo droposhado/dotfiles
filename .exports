@@ -15,10 +15,21 @@ export GPG_TTY
 
 export GVM_NO_UPDATE_PROFILE=1
 
+# Ignore commands if started with space
+# Ignore duplicates
+export HISTCONTROL=ignorespace:ignoredups
+
+# Increase history size
+export HISTSIZE=100000
+export HISTFILESIZE=100000
+
+# Dont save commands with this patterns
+export HISTIGNORE=" *:cd*:history*:l*"
+
 # macOS only
 # https://github.com/Homebrew/brew/blob/master/docs/Analytics.md
 export HOMEBREW_NO_ANALYTICS=1
-#
+
 # Specify your defaults in this environment variable
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 
@@ -29,7 +40,6 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 # export LANG=en_US.UTF-8
 
 export MANPATH="/usr/local/man:$MANPATH"
-
 # Final changes to PATH, only in EOF
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PATH="$PYENV_ROOT/bin:$PATH"
