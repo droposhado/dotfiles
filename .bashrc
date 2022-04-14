@@ -12,6 +12,9 @@ for file in ~/.{aliases,gvm/scripts/gvm,exports,exports.local,functions}; do
 done;
 unset file;
 
+# without override, change to apppend
+shopt -s histappend
+
 if [[ -d "${PYENV_ROOT}" ]]; then
     eval "$(pyenv init --path)"
     eval "$(pyenv init -)"
