@@ -33,6 +33,10 @@ alsa-utils
 # dmenu opens
 xdg-utils
 
+# screenshot
+xdotool
+maim
+
 # file system
 cifs-utils
 exfat-fuse

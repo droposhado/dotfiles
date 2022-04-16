@@ -227,6 +227,13 @@ bindsym $mod+l exec ~/bin/lock
 #######################################################################
 # exec i3-config-wizard
 
+# Screenshots
+bindsym Print exec --no-startup-id maim "/home/$USER/Downloads/$(date +'%Y-%m-%d-%H-%M-%S').png" --format png
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) \
+        "/home/$USER/Downloads/$(date +'%Y-%m-%d-%H-%M-%S').png" --format png
+bindsym $mod+Shift+Print exec --no-startup-id maim --select \
+        "/home/$USER/Downloads/$(date +'%Y-%m-%d-%H-%M-%S').png"
+
 # Volume control
 # https://unix.stackexchange.com/questions/21089/how-to-use-command-line-to-change-volume
 bindsym $mod+equal exec --no-startup-id amixer set Master 5%+
