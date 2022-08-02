@@ -8,18 +8,22 @@ Always installing minimal software and checking external installers.
 
 * **macOS** >= 10.15
 * **Debian** >= 11
-  * **wm**: i3
-  * **desktop manager**: null
-  * **terminal**: [alacritty](https://github.com/alacritty/alacritty) / rxvt-unicode
-  * **bar**: [i3status-rust](https://github.com/greshake/i3status-rust/) / [bin/horizonte.py](bin/horizonte.py)
-  * **editor**: vim
-  * **font**: [fira code](https://github.com/tonsky/FiraCode) / [fontawesome](https://github.com/FortAwesome/Font-Awesome) / [noto emoji color](https://github.com/googlefonts/noto-emoji)
-  * **shell**: bash
-  * **shell prompt**: [starship](https://starship.rs)
-  * **notification**: dunst
-  * **screenlocker**: i3lock
-  * **text-expander**: [espanso](https://espanso.org/)
-  * **multiplexer**: [tmux](https://github.com/tmux/tmux)
+* **Arch**
+
+## Packages (Linux)
+
+* **wm**: i3
+* **desktop manager**: null
+* **terminal**: [alacritty](https://github.com/alacritty/alacritty) / rxvt-unicode
+* **bar**: [i3status-rust](https://github.com/greshake/i3status-rust/) / [bin/horizonte.py](bin/horizonte.py)
+* **editor**: vim
+* **font**: [fira code](https://github.com/tonsky/FiraCode) / [fontawesome](https://github.com/FortAwesome/Font-Awesome) / [noto emoji color](https://github.com/googlefonts/noto-emoji)
+* **shell**: bash
+* **shell prompt**: [starship](https://starship.rs)
+* **notification**: dunst
+* **screenlocker**: i3lock
+* **text-expander**: [espanso](https://espanso.org/)
+* **multiplexer**: [tmux](https://github.com/tmux/tmux)
 
 ## Requirements
 
@@ -27,6 +31,7 @@ Always installing minimal software and checking external installers.
   * Xcode
   * Xcode command line
 * Debian (minimal install)
+* Arch
 
 ## Install
 
@@ -50,6 +55,31 @@ $ make install-vim
 ```
 
 Logout and login again (for sudo effect), now:
+
+```
+$ git clone https://github.com/droposhado/dotfiles.git "$HOME/.dotfiles"
+$ cd "$HOME/.dotfiles" || exit 1
+$ make install
+$ make install-vim
+```
+
+### Arch
+
+Download ISO from site, use live install with command:
+
+```
+# archinstall --config https://dl.droposhado.org/archinstall.json
+```
+
+Configure disk and users with wizard, finsh install, reboot with:
+
+**Remove install media**
+
+```
+# shutdown -r now
+```
+
+Clone project from Github and install
 
 ```
 $ git clone https://github.com/droposhado/dotfiles.git "$HOME/.dotfiles"

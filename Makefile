@@ -70,6 +70,10 @@ setup-Debian:
 
 	bash "$(PWD)/scripts/debian-config-espanso.sh"
 
+setup-Arch:
+	# bash "$(PWD)/scripts/arch-config-espanso.sh"
+	@echo "No Arch specific commands"
+
 ################################################################################
 # INSTALL
 

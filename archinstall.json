@@ -1,0 +1,98 @@
+{
+    "audio": "pulseaudio",
+    "bootloader": "grub-install",
+    "config_version": "2.5.0",
+    "gfx_driver": "AMD / ATI (open-source)",
+    "harddrives": null,
+    "hostname": "arrow",
+    "kernels": [
+        "linux"
+    ],
+    "keyboard-layout": "br-abnt2",
+    "mirror-region": {
+        "Worldwide": {
+            "https://geo.mirror.pkgbuild.com/$repo/os/$arch": true,
+            "https://mirror.rackspace.com/archlinux/$repo/os/$arch": true
+        }
+    },
+    "mount_point": null,
+    "nic": {
+        "dhcp": true,
+        "dns": null,
+        "gateway": null,
+        "iface": null,
+        "ip": null,
+        "type": "nm"
+    },
+    "ntp": true,
+    "packages": [
+        "ca-certificates",
+        "curl",
+        "gnupg",
+        "lsb-release",
+
+        "git",
+        "base-devel",
+        "openssh",
+
+        "fontconfig",
+
+        "ttf-fira-code",
+
+        "xorg-server",
+        "xorg-apps",
+        "xorg-xauth",
+        "xorg-xinit",
+        "xorg-fonts-100dpi",
+        "xorg-fonts-75dpi",
+        "xorg-xkbutils",
+        "i3-wm",
+        "i3lock",
+        "i3status-rust",
+        "alsa-utils",
+        "dunst",
+
+        "xdg-utils",
+
+        "xdotool",
+        "maim",
+
+        "cifs-utils",
+        "exfatprogs",
+        "exfat-utils",
+        "mtpfs",
+        "ntfs-3g",
+
+        "bison",
+        "gdb",
+        "meld",
+        "tmux",
+        "vim",
+
+        "pavucontrol",
+
+        "firefox",
+        "rxvt-unicode",
+        "mlocate",
+        "transmission-gtk",
+        "vlc",
+        "zathura",
+        "xclip",
+
+        "openssl",
+        "zlib",
+        "xz",
+        "tk",
+
+        "python-psutil"
+    ],
+    "plugin": null,
+    "profile": null,
+    "script": "guided",
+    "silent": false,
+    "swap": true,
+    "sys-encoding": "utf-8",
+    "sys-language": "en_US",
+    "timezone": "America/Sao_Paulo",
+    "version": "2.5.0"
+}
