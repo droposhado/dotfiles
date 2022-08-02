@@ -19,7 +19,7 @@ if [ -f ~/.Xresources ]; then
   xrdb -merge ~/.Xresources
 fi
 
-setxkbmap us
+setxkbmap br
 
 xrandr --output VGA-1 --mode "1920x1080_60.00" &
 
