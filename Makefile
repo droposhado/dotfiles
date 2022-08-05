@@ -77,8 +77,9 @@ setup-Arch:
 setup-Fedora:
 	sudo bash "$(PWD)/scripts/fedora-install-packages.sh"
 	sudo bash "$(PWD)/scripts/fedora-install-i3status.sh"
+	sudo bash "$(PWD)/scripts/fedora-install-docker.sh"
 
-	# bash "$(PWD)/scripts/arch-config-espanso.sh"
+	# bash "$(PWD)/scripts/fedora-config-espanso.sh"
 
 ################################################################################
 # INSTALL
