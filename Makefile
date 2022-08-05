@@ -76,6 +76,7 @@ setup-Arch:
 
 setup-Fedora:
 	sudo bash "$(PWD)/scripts/fedora-install-packages.sh"
+	sudo bash "$(PWD)/scripts/fedora-install-i3status.sh"
 
 	# bash "$(PWD)/scripts/arch-config-espanso.sh"
 

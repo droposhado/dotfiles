@@ -22,7 +22,6 @@ xinput
 xrandr
 i3
 i3lock
-i3status-rs
 dunst
 
 # i3 volume binds
