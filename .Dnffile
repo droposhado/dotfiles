@@ -34,6 +34,9 @@ xdg-utils
 xdotool
 maim
 
+# network tools
+net-tools
+
 # dev
 bison
 gdb
