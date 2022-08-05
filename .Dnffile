@@ -1,0 +1,71 @@
+# essentials
+git
+openssh-clients
+
+# build-essentials
+automake
+gcc
+gcc-c++
+make
+
+# font utils
+fontconfig
+
+fira-code-fonts
+
+
+
+xorg-x11-server-Xorg
+xorg-x11-xauth
+xorg-x11-xinit
+xorg-x11-fonts
+xinput
+xrandr
+i3
+i3lock
+i3status-rs
+dunst
+
+# i3 volume binds
+alsa-utils
+
+# dmenu opens
+xdg-utils
+
+# screenshot
+xdotool
+maim
+
+# dev
+bison
+gdb
+meld
+tmux
+vim
+
+# pyenv - https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+zlib-devel
+bzip2
+bzip2-devel
+readline-devel
+sqlite
+sqlite-devel
+openssl-devel
+tk-devel
+libffi-devel
+xz-devel
+
+# volume control
+pavucontrol
+
+# sofware packages
+firefox
+rxvt-unicode
+mlocate
+transmission
+zathura
+xclip
+
+# horizonte
+python3-alsaaudio
+python3-psutil

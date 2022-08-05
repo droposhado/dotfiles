@@ -74,6 +74,11 @@ setup-Arch:
 	# bash "$(PWD)/scripts/arch-config-espanso.sh"
 	@echo "No Arch specific commands"
 
+setup-Fedora:
+	sudo bash "$(PWD)/scripts/fedora-install-packages.sh"
+
+	# bash "$(PWD)/scripts/arch-config-espanso.sh"
+
 ################################################################################
 # INSTALL
 

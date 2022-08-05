@@ -9,6 +9,7 @@ Always installing minimal software and checking external installers.
 * **macOS** >= 10.15
 * **Debian** >= 11
 * **Arch**
+* **Fedora** > 36
 
 ## Packages (Linux)
 
@@ -27,14 +28,6 @@ Always installing minimal software and checking external installers.
 
 ## Requirements
 
-* macOS
-  * Xcode
-  * Xcode command line
-* Debian (minimal install)
-* Arch
-
-## Install
-
 ### macOS
 
 ```
@@ -45,7 +38,7 @@ $ make install
 $ make install-vim
 ```
 
-### Debian
+### Debian (minimal)
 
 ```
 # apt-get update
@@ -88,14 +81,31 @@ $ make install
 $ make install-vim
 ```
 
+### Fedora (netinst)
+
+The `wheel` group is to use `sudo` command.
+
+```
+# dnf install --setopt=install_weak_deps=False ca-certificates curl \
+              redhat-lsb sudo automake gcc gcc-c++ make git gnupg
+# adduser -G wheel <new-user>
+# passwd <new-user>
+$ git clone https://github.com/droposhado/dotfiles.git "$HOME/.dotfiles"
+$ cd "$HOME/.dotfiles" || exit 1
+$ make install
+$ make install-vim
+```
+
 ## Scripts folder
 
 Inside the scripts folder there are shell script files for configuring or updating the configurations/packages packages in this project.
 
+ - **arch-\***: prefix represents files for Arch
  - **check-\***: contains check scripts for validating homebrew and apt packages;
  - **common-\***: common scripts between Linux and macOS;
  - **common-install-\***: official installation scripts for Linux and macOS;
  - **debian-\***: prefix represents files for Debian, not necessarily compatible with Debian like distributions;
+ - **fedora-\***: prefix represents files for Fedora, not necessarily compatible with RHEL/CentOS like distributions;
  - **linux-\***: prefix represents files for Linux;
  - **linux-install-\***: official installation scripts for Linux;
  - **macos-\***: prefix represents files for macOS;
@@ -130,6 +140,7 @@ This repository store scripts for many languages, the files below show which lan
 - [git-init - TEMPLATE DIRECTORY](https://git-scm.com/docs/git-init#_template_directory)
 - [tep/git-templates](https://github.com/tep/git-templates)
 - [git/git/templates](https://github.com/git/git/tree/master/templates)
+- [Which kind of dependencies (suggested, recommended…) does DNF install?](https://docs.fedoraproject.org/en-US/packaging-guidelines/WeakDependencies/)
 
 ## License
 
