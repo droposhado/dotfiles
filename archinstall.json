@@ -49,8 +49,10 @@
         "i3-wm",
         "i3lock",
         "i3status-rust",
-        "alsa-utils",
         "dunst",
+
+        "alsa-utils",
+        "playerctl",
 
         "xdg-utils",
 

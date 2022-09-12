@@ -26,6 +26,7 @@ dunst
 
 # i3 volume binds
 alsa-utils
+playerctl
 
 # dmenu opens
 xdg-utils

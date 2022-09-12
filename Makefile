@@ -92,6 +92,7 @@ install-dotbins:
 	ln -sfn $(PWD)/bin/ndate.py $(HOME)/bin/ndate
 	ln -sfn $(PWD)/bin/ngit $(HOME)/bin/ngit
 	ln -sfn $(PWD)/bin/nw $(HOME)/bin/nw
+	ln -sfn $(PWD)/bin/play-pause.sh $(HOME)/bin/play-pause
 	ln -sfn $(PWD)/bin/rename.py $(HOME)/bin/rename
 	ln -sfn $(PWD)/bin/week $(HOME)/bin/week
 
