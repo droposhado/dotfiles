@@ -61,7 +61,7 @@ $ make install-vim
 Download ISO from site, use live install with command:
 
 ```
-# archinstall --config https://dl.droposhado.org/archinstall.json
+# archinstall --config https://droposhado.org/archinstall
 ```
 
 Configure disk and users with wizard, finsh install, reboot with:
