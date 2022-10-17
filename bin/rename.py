@@ -87,4 +87,8 @@ for filename in filenames:
 
     base_path = os.path.dirname(filename)
     new = os.path.join(base_path, FILENAME_FIXED)
+
+    # translate --- to -
+    new = new.replace('---', '-')
+
     os.rename(filename, new)
