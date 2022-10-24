@@ -25,10 +25,12 @@ i3lock
 dunst
 
 # i3 volume binds
+pulseaudio
 alsa-utils
 playerctl
 
 # dmenu opens
+dmenu
 xdg-utils
 
 # screenshot
