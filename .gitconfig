@@ -24,8 +24,11 @@
     rv = remote -v
     s = status
     sub = submodule
+    t = tag
     ph = push
+    pho = push origin
     pl = pull
+    plo = pull origin
 
 [color]
     diff = auto
