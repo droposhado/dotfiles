@@ -22,7 +22,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'pearofducks/ansible-vim'
   Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
   Plug 'elzr/vim-json', { 'for': 'json' }
-  Plug 'wakatime/vim-wakatime'
   Plug 'cespare/vim-toml', { 'branch': 'main', 'for': 'toml' }
 call plug#end()
 " "}}}

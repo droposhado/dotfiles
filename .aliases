@@ -16,7 +16,11 @@ alias la="ls -lha"
 
 alias locate="locate -i"
 
+alias k="kubectl"
+
 alias pss="ps aux | grep -i"
+
+alias t="tree -a -I .git"
 
 # macOS
 if [[ "$(uname -s)" == "Darwin" ]]; then
