@@ -50,7 +50,7 @@ format = " $icon $count.eng(w:1) "
 format_singular = " $icon "
 format_up_to_date = " $icon "
 critical_updates_regex = "(linux|linux-lts|linux-zen)"
-if_command = "test dnf"
+if_command = "test -f /usr/bin/dnf"
 [[block.click]]
 # shows dmenu with cached available updates. Any dmenu alternative should also work.
 button = "left"
@@ -63,13 +63,8 @@ format = " $icon $count "
 format_singular = " $icon "
 format_up_to_date = " $icon "
 critical_updates_regex = "(linux|linux-lts|linux-zen)"
-[[block.click]]
-# shows dmenu with cached available updates. Any dmenu alternative should also work.
-button = "left"
-cmd = "APT_CONFIG=/tmp/i3rs-apt/apt.conf apt list --upgradable | tail -n +2"
-if_command = "test apt"
+if_command = "test -f /usr/bin/apt"
 [[block.click]]
 # Updates the block on right click
 button = "left"
 update = true
-
