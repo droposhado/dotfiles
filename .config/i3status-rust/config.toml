@@ -22,6 +22,14 @@ block = "memory"
 format = " $icon $mem_used.eng(w:3,u:B,p:M)$cached$mem_total_used "
 
 [[block]]
+block = "disk_space"
+info_type = "available"
+alert_unit = "GB"
+alert = 10.0
+warning = 15.0
+format = " $icon $available "
+
+[[block]]
 block = "net"
 #format = "{graph_down}"
 format = " $icon $graph_down "
