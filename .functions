@@ -19,7 +19,7 @@ function checkport() {
 # sudo is required for more detailed information, as FSTYPE and LABEL
 # Fstype in general and LABEL in identifying the name Kindle
 function devices() {
-  sudo lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL
+  lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL
 }
 
 function foldersize() {
