@@ -189,7 +189,7 @@ update-lit-string-trim:
 	rm -rf lit-string.tar.gz
 
 update-tmux-nord-theme:
-	curl -sSL https://github.com/nordtheme/tmux/archive/master.tar.gz \
+	curl -sSL https://github.com/nordtheme/tmux/archive/develop.tar.gz \
 		-o nord-tmux.tar.gz
 	tar -xzvf "${PWD}/nord-tmux.tar.gz" -C "${PWD}/.config/tmux/themes/nord-tmux" --strip-components=1
 	rm -rf nord-tmux.tar.gz
@@ -223,7 +223,7 @@ update-gvm-install-script:
 		-o scripts/$(PREFIX_TEST)common-install-gvm.sh
 
 update-xresources-nord-theme:
-	curl -sSL https://github.com/nordtheme/xresources/archive/master.tar.gz \
+	curl -sSL https://github.com/nordtheme/xresources/archive/develop.tar.gz \
 		-o nord-xresources.tar.gz
 	tar -xzvf "${PWD}/nord-xresources.tar.gz" -C "${PWD}/.config/xresources/themes/nord-xresources" \
 		--strip-components=1

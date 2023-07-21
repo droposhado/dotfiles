@@ -156,6 +156,6 @@ For external resources like fonts, scripts and other, see their respective licen
 - [.hammerspoon/lit-slugify](.hammerspoon/lit-slugify) - [LICENSE](.hammerspoon/lit-slugify/LICENSE)
 - [.hammerspoon/string-trim](.hammerspoon/string-trim) - [LICENSE](.hammerspoon/string-trim/LICENSE)
 - [.vim/autoload/plug.vim](.vim/autoload/plug.vim) - [LICENSE](https://github.com/junegunn/vim-plug/blob/master/LICENSE)
-- [.config/alacritty/themes/nord.yml](.config/alacritty/themes/nord.yml) - [LICENSE](https://github.com/arcticicestudio/nord-alacritty/blob/develop/LICENSE.md)
+- [.config/alacritty/themes/nord.yml](.config/alacritty/themes/nord.yml) - [LICENSE](https://github.com/nordtheme/alacritty/blob/develop/LICENSE.md)
 - [.config/tmux/themes/nord-tmux](.config/tmux/themes/nord-tmux) - [LICENSE](.config/tmux/themes/nord-tmux/LICENSE.md)
 - [.config/xresources/themes/nord-xresources](.config/xresources/themes/nord-xresources) - [LICENSE](.config/xresources/themes/nord-xresources/LICENSE.md)
