@@ -31,7 +31,6 @@ format = " $icon $available "
 
 [[block]]
 block = "net"
-#format = "{graph_down}"
 format = " $icon $graph_down "
 interval = 1
 
@@ -63,6 +62,7 @@ if_command = "test -f /usr/bin/dnf"
 # shows dmenu with cached available updates. Any dmenu alternative should also work.
 button = "left"
 cmd = "dnf list -q --upgrades | tail -n +2"
+update = true
 
 [[block]]
 block = "apt"
