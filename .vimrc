@@ -5,7 +5,7 @@ set shell=/bin/bash
 
 " ##### Plugins {{
 call plug#begin('~/.vim/plugged')
-  Plug 'arcticicestudio/nord-vim'      " color
+  Plug 'nordtheme/vim'                 " color
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " sidebar
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'itchyny/lightline.vim'         " status bar
