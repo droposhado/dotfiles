@@ -30,6 +30,11 @@ warning = 15.0
 format = " $icon $available "
 
 [[block]]
+block = "docker"
+interval = 2
+format = " $icon $running $total $images "
+
+[[block]]
 block = "net"
 format = " $icon $graph_down "
 interval = 1
