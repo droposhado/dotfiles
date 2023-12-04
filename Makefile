@@ -68,7 +68,7 @@ setup-Debian:
 	sudo -E bash "$(PWD)/scripts/debian-config-sourceslist.sh"
 	sudo bash "$(PWD)/scripts/debian-install-packages.sh"
 
-	bash "$(PWD)/scripts/debian-config-espanso.sh"
+	# bash "$(PWD)/scripts/debian-config-espanso.sh"
 
 setup-Arch:
 	# bash "$(PWD)/scripts/arch-config-espanso.sh"
@@ -106,6 +106,7 @@ install-dotfiles:
 	ln -sfn "${PWD}/.functions" "${HOME}/.functions"
 	ln -sfn "${PWD}/.gitconfig" "${HOME}/.gitconfig"
 	ln -sfn "${PWD}/.inputrc" "${HOME}/.inputrc"
+	ln -sfn "${PWD}/.taskrc" "${HOME}/.taskrc"
 	ln -sfn "${PWD}/.tmux.conf" "${HOME}/.tmux.conf"
 	ln -sfn "${PWD}/.vimrc" "${HOME}/.vimrc"
 	ln -sfn "${PWD}/.xinitrc" "${HOME}/.xinitrc"
