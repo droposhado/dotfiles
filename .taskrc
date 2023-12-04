@@ -32,10 +32,10 @@ alias.a=add
 alias.e=edit
 alias.ex=export
 
-report.l.columns=uuid.short,entry.age,priority.indicator,status,project,description.count,tags
+report.l.columns=uuid.short,entry.age,priority,status,project,description.count,tags
 report.l.labels=UUID,Age,P,Status,Project,Description,Tags
-report.l.sort=due+
-report.l.filter=status:pending -blocante -blocked
+report.l.sort=priority-/,project+,due+
+report.l.filter=status:pending -blocante -blocked -backlog
 
 #data.location=~/.local/share/task
 #hooks.location=~/.config/task/hooks
