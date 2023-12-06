@@ -32,9 +32,14 @@ alias.a=add
 alias.e=edit
 alias.ex=export
 
+report.bl.columns=uuid.short,entry.age,priority,status,project,description.count,tags
+report.bl.labels=UUID,Age,P,Status,Project,Description,Tags
+report.bl.sort=priority-/,project+,due+,description+
+report.bl.filter=+backlog
+
 report.l.columns=uuid.short,entry.age,priority,status,project,description.count,tags
 report.l.labels=UUID,Age,P,Status,Project,Description,Tags
-report.l.sort=priority-/,project+,due+
+report.l.sort=priority-/,project+,due+,description+
 report.l.filter=status:pending -blocante -blocked -backlog
 
 #data.location=~/.local/share/task
@@ -48,7 +53,7 @@ report.l.filter=status:pending -blocante -blocked -backlog
 #include dark-red-256.theme
 #include dark-green-256.theme
 #include dark-blue-256.theme
-include /usr/share/task/dark-violets-256.theme
+include dark-violets-256.theme
 #include dark-yellow-green.theme
 #include dark-gray-256.theme
 #include dark-gray-blue-256.theme
