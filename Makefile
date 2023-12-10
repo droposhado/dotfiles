@@ -68,18 +68,13 @@ setup-Debian:
 	sudo -E bash "$(PWD)/scripts/debian-config-sourceslist.sh"
 	sudo bash "$(PWD)/scripts/debian-install-packages.sh"
 
-	# bash "$(PWD)/scripts/debian-config-espanso.sh"
-
 setup-Arch:
-	# bash "$(PWD)/scripts/arch-config-espanso.sh"
 	@echo "No Arch specific commands"
 
 setup-Fedora:
 	sudo bash "$(PWD)/scripts/fedora-install-packages.sh"
 	sudo bash "$(PWD)/scripts/fedora-install-i3status.sh"
 	sudo bash "$(PWD)/scripts/fedora-install-docker.sh"
-
-	# bash "$(PWD)/scripts/fedora-config-espanso.sh"
 
 ################################################################################
 # INSTALL
