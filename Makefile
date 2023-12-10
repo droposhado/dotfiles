@@ -67,6 +67,7 @@ setup-Debian:
 	sudo -E bash "$(PWD)/scripts/debian-config-locales.sh"
 	sudo -E bash "$(PWD)/scripts/debian-config-sourceslist.sh"
 	sudo bash "$(PWD)/scripts/debian-install-packages.sh"
+	sudo bash "$(PWD)/scripts/debian-install-docker.sh"
 
 setup-Arch:
 	@echo "No Arch specific commands"
@@ -97,6 +98,7 @@ install-dotfiles:
 	ln -sfn "${PWD}/.bash_profile" "${HOME}/.bash_profile"
 	ln -sfn "${PWD}/.bash_prompt" "${HOME}/.bash_prompt"
 	ln -sfn "${PWD}/.bashrc" "${HOME}/.bashrc"
+	ln -sfn "${PWD}/.dockerfunctions" "${HOME}/.dockerfunctions"
 	ln -sfn "${PWD}/.exports" "${HOME}/.exports"
 	ln -sfn "${PWD}/.functions" "${HOME}/.functions"
 	ln -sfn "${PWD}/.gitconfig" "${HOME}/.gitconfig"

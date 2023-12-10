@@ -4,7 +4,7 @@ if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]]; then
 fi
 
 # Load the shell dotfiles
-for file in ~/.{aliases,gvm/scripts/gvm,exports,exports.local,functions}; do
+for file in ~/.{aliases,gvm/scripts/gvm,exports,exports.local,functions,dockerfunctions}; do
     if [[ -r "$file" && -f "$file" ]]; then
         # shellcheck source=/dev/null
         source "${file}"

@@ -148,6 +148,7 @@ For this project see [LICENSE](LICENSE).
 
 For external resources like fonts, scripts and other, see their respective licenses:
 
+- [.dockerfunctions](.dockerfunctions) - [LICENSE](https://github.com/jessfraz/dotfiles/blob/master/LICENSE)
 - [.fonts/fontawesome](.fonts/fontawesome) - [LICENSE](https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt)
 - [.fonts/noto](.fonts/noto) - [LICENSE](https://github.com/googlefonts/noto-emoji/blob/main/LICENSE)
 - [scripts/common-install-starship.sh](scripts/common-install-starship.sh) - [LICENSE](https://github.com/starship/starship/blob/master/LICENSE) (script in [install/install.sh](https://github.com/starship/starship/blob/master/install/install.sh))
