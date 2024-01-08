@@ -28,10 +28,6 @@ search.case.sensitive=no
 list.all.projects=1
 summary.all.projects=1
 
-alias.a=add
-alias.e=edit
-alias.ex=export
-
 report.bl.columns=uuid.short,entry.age,priority,status,project,description.count,tags
 report.bl.labels=UUID,Age,P,Status,Project,Description,Tags
 report.bl.sort=priority-/,project+,due+,description+
