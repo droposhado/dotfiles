@@ -1,0 +1,37 @@
+[general]
+accounts = Main
+
+# disable writes cicle on SSDs
+fsync = False
+
+[mbnames]
+enabled = yes
+localfolders = ~/Maildir
+header = "mailboxes "
+peritem = +%(foldername)s
+footer = "\n"
+
+# needs be a space to command mailbox work
+sep = " "
+
+# output file with all mailboxes names
+filename = ~/.config/mutt/mailboxes
+
+[Account Main]
+localrepository = MainLocal
+remoterepository = MainRemote
+presynchook = imapfilter
+postsynchook = notmuch new
+
+[Repository MainRemote]
+type = IMAP
+remotehost = imap.example.com
+remoteuser =
+remotepass =
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[Repository MainLocal]
+type = Maildir
+localfolders = ~/Maildir
+restoreatime = no
