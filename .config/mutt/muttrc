@@ -1,0 +1,39 @@
+source ~/.config/mutt/muttrc.local
+source ~/.config/mutt/colors
+
+set mbox_type=Maildir
+set folder = ~/Maildir
+set spoolfile = +INBOX
+
+set header_cache = ~/.cache/mutt
+set message_cachedir = ~/.cache/mutt
+set postponed = +Drafts
+unset imap_passive
+set imap_keepalive = 300
+set mail_check = 120
+
+set record = +Sent
+
+# sort
+set sort_aux = last-date-received
+set sort = reverse-threads
+
+# sidebar
+set sidebar_visible
+set sidebar_short_path
+set sidebar_folder_indent
+set sidebar_indent_string = "  "
+set sidebar_width = 35
+set sidebar_divider_char = ' | '
+set sidebar_format = "%B %* [%?N?%N / ?%S]"
+
+# force load sidebar stats to fill sidebar_format
+set mail_check_stats
+
+set use_from = yes
+set smtp_pass = $my_pass
+set smtp_url = smtps://$my_user@$my_smtp_server
+set ssl_force_tls = yes
+
+# needs be placed after mbox configs
+source ~/.config/mutt/mailboxes
