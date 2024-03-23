@@ -1,0 +1,43 @@
+[general]
+# A folder where vdirsyncer can store some metadata about each pair.
+status_path = "~/docs/vdirsyncer/status/"
+
+
+[pair contacts]
+a = "contacts_local"
+b = "contacts_remote"
+collections = ["from a", "from b"]
+conflict_resolution = "b wins"
+
+[storage contacts_local]
+type = "filesystem"
+path = "~/docs/contacts"
+fileext = ".vcf"
+
+[storage contacts_remote]
+type = "carddav"
+
+# We can simplify this URL here as well. In theory it shouldn't matter.
+url = "https://nextcloud.instance/remote.php/carddav/"
+username = ""
+password = ""
+
+
+[pair calendars]
+a = "calendars_local"
+b = "calendars_remote"
+collections = ["from a", "from b"]
+conflict_resolution = "b wins"
+
+[storage calendars_local]
+type = "filesystem"
+path = "~/docs/calendars"
+fileext = ".ics"
+
+[storage calendars_remote]
+type = "caldav"
+
+# We can simplify this URL here as well. In theory it shouldn't matter.
+url = "https://nextcloud.instance/remote.php/caldav/"
+username = ""
+password = ""
