@@ -15,13 +15,21 @@ gitleaks(){
   docker run -it --rm \
     -v "${PWD}:/path" \
     --source="/path" \
-    --name terraform \
-    hashicorp/terraform:1.5.4 "$@"
-}
-
-tf(){
-  docker run -it --rm \
-    -v "${PWD}:/data" \
     --name gitleaks \
     zricethezav/gitleaks:latest "$@"
 }
+
+nde(){
+  docker run -it --rm \
+    -v "${PWD}:/path" \
+    --source="/path" \
+    --name gitleaks \
+    zricethezav/gitleaks:latest "$@"
+}
+
+# tf(){
+#   docker run -it --rm \
+#     -v "${PWD}:/data" \
+#     --name terraform \
+#     hashicorp/terraform:1.5.4 "$@"
+# }
