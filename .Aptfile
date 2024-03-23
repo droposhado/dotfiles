@@ -41,7 +41,6 @@ maim
 # file system
 cifs-utils
 exfat-fuse
-exfat-utils
 jmtpfs
 ntfs-3g
 
@@ -67,6 +66,7 @@ libffi-dev
 liblzma-dev
 
 # volume control
+pulseaudio
 pavucontrol
 
 # sofware packages
@@ -77,6 +77,17 @@ transmission
 mpv
 zathura
 xclip
+
+# backup
+borgbackup
+vorta
+
+# mail
+offlineimap3
+imapfilter
+
+# (card, cal) * DAV
+vdirsyncer
 
 # horizonte
 python3-alsaaudio
