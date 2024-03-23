@@ -26,7 +26,7 @@ all: install
 
 install: setup dot install-fonts
 
-dot: install-dotbins install-dotfiles install-dotfolder
+dot: install-dotbins install-dotfiles install-dotfolders
 
 ################################################################################
 # SETUP
@@ -62,12 +62,22 @@ setup-Darwin: install-starship install-gvm
 
 setup-Linux: setup-$(DISTRO) install-pyenv install-starship install-gvm
 	xdg-mime default org.pwmt.zathura.desktop application/pdf
+	ln -s "$(HOME)/docs/email/filters/src" "$(HOME)/.imapfilter/filters"
 
 setup-Debian:
 	sudo -E bash "$(PWD)/scripts/debian-config-locales.sh"
 	sudo -E bash "$(PWD)/scripts/debian-config-sourceslist.sh"
 	sudo bash "$(PWD)/scripts/debian-install-packages.sh"
 	sudo bash "$(PWD)/scripts/debian-install-docker.sh"
+
+	# Needs packages installed
+	systemctl --user enable vdirsyncer.timer
+	systemctl --user start vdirsyncer.timer
+	systemctl --user enable offlineimap-oneshot.timer
+	systemctl --user start offlineimap-oneshot.timer
+	systemctl --user enable syncthing.service
+	systemctl --user start syncthing.service
+	systemctl --user daemon-reload
 
 setup-Arch:
 	@echo "No Arch specific commands"
@@ -81,16 +91,16 @@ setup-Fedora:
 # INSTALL
 
 install-dotbins:
-	if test ! -d $(HOME)/bin; then mkdir $(HOME)/bin; fi
-	ln -sfn $(PWD)/bin/horizonte.py $(HOME)/bin/horizonte
-	ln -sfn $(PWD)/bin/lock $(HOME)/bin/lock
-	ln -sfn $(PWD)/bin/logout $(HOME)/bin/logout
-	ln -sfn $(PWD)/bin/ndate.py $(HOME)/bin/ndate
-	ln -sfn $(PWD)/bin/ngit $(HOME)/bin/ngit
-	ln -sfn $(PWD)/bin/nw $(HOME)/bin/nw
-	ln -sfn $(PWD)/bin/play-pause.sh $(HOME)/bin/play-pause
-	ln -sfn $(PWD)/bin/rename.py $(HOME)/bin/rename
-	ln -sfn $(PWD)/bin/week $(HOME)/bin/week
+	# instalation on /usr/local/bin prevines changes on commands
+	sudo cp $(PWD)/bin/horizonte.py /usr/local/bin/horizonte
+	sudo cp $(PWD)/bin/lock /usr/local/bin/lock
+	sudo cp $(PWD)/bin/logout /usr/local/bin/logout
+	sudo cp $(PWD)/bin/ndate.py /usr/local/bin/ndate
+	sudo cp $(PWD)/bin/ngit /usr/local/bin/ngit
+	sudo cp $(PWD)/bin/nw /usr/local/bin/nw
+	sudo cp $(PWD)/bin/play-pause.sh /usr/local/bin/play-pause
+	sudo cp $(PWD)/bin/rename.py /usr/local/bin/rename
+	sudo cp $(PWD)/bin/week /usr/local/bin/week
 
 install-dotfiles:
 	if test ! -d $(HOME)/.config; then mkdir $(HOME)/.config; fi
@@ -110,7 +120,7 @@ install-dotfiles:
 	ln -sfn "${PWD}/.Xresources" "${HOME}/.Xresources"
 	ln -sfn "${PWD}/.config/starship.toml" "${HOME}/.config/starship.toml"
 
-install-dotfolder:
+install-dotfolders:
 	if test ! -d $(HOME)/.config; then mkdir $(HOME)/.config; fi
 	if test ! -d $(HOME)/.config/alacritty; then rm -rf $(HOME)/.config/alacritty; fi
 	if test ! -d $(HOME)/.config/dunst; then rm -rf $(HOME)/.config/dunst; fi
@@ -118,17 +128,31 @@ install-dotfolder:
 	if test ! -d $(HOME)/.config/git; then rm -rf $(HOME)/.config/git; fi
 	if test ! -d $(HOME)/.config/i3; then rm -rf $(HOME)/.config/i3; fi
 	if test ! -d $(HOME)/.config/i3status-rust; then rm -rf $(HOME)/.config/i3status-rust; fi
+	if test ! -d $(HOME)/.config/mpv; then rm -rf $(HOME)/.config/mpv; fi
+	if test ! -d $(HOME)/.config/mutt; then rm -rf $(HOME)/.config/mutt; fi
+	if test ! -d $(HOME)/.config/offlineimap; then rm -rf $(HOME)/.config/offlineimap; fi
 	if test ! -d $(HOME)/.config/tmux; then rm -rf $(HOME)/.config/tmux; fi
+	if test ! -d $(HOME)/.config/tui-jornal; then rm -rf $(HOME)/.config/tui-jornal; fi
 	if test ! -d $(HOME)/.config/xresources; then rm -rf $(HOME)/.config/xresources; fi
+	if test ! -d $(HOME)/.config/vdirsyncer; then rm -rf $(HOME)/.config/vdirsyncer; fi
+	if test ! -d $(HOME)/.imapfilter; then rm -rf $(HOME)/.imapfilter; fi
+	if test ! -d $(HOME)/.vim; then rm -rf $(HOME)/.vim; fi
 	ln -sfn "${PWD}/.config/alacritty" "${HOME}/.config/alacritty"
 	ln -sfn "${PWD}/.config/dunst" "${HOME}/.config/dunst"
 	ln -sfn "${PWD}/.config/espanso" "${HOME}/.config/espanso"
+	ln -sfn "${PWD}/.config/git" "${HOME}/.config/git"
 	ln -sfn "${PWD}/.config/i3" "${HOME}/.config/i3"
 	ln -sfn "${PWD}/.config/i3status-rust" "${HOME}/.config/i3status-rust"
-	ln -sfn "${PWD}/.config/git" "${HOME}/.config/git"
+	ln -sfn "${PWD}/.config/mpv" "${HOME}/.config/mpv"
+	ln -sfn "${PWD}/.config/mutt" "${HOME}/.config/mutt"
+	ln -sfn "${PWD}/.config/offlineimap" "${HOME}/.config/offlineimap"
 	ln -sfn "${PWD}/.config/tmux" "${HOME}/.config/tmux"
-	ln -sfn "${PWD}/.vim" "${HOME}/.vim"
+	ln -sfn "${PWD}/.config/tui-journal" "${HOME}/.config/tui-journal"
 	ln -sfn "${PWD}/.config/xresources" "${HOME}/.config/xresources"
+	ln -sfn "${PWD}/.config/vdirsyncer" "${HOME}/.config/vdirsyncer"
+	ln -sfn "${PWD}/.imapfilter" "${HOME}/.imapfilter"
+	ln -sfn "${PWD}/.vim" "${HOME}/.vim"
+	cp "${PWD}/.config/mutt/muttrc.local.example" "${HOME}/.config/mutt/muttrc.local"
 
 install-fonts:
 	if test ! -d $(HOME)/.fonts; then mkdir $(HOME)/.fonts; fi

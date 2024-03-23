@@ -3,6 +3,13 @@
 .uuid
 scripts/test_*
 
+# ignore sensible data
+
+.config/mutt/mailboxes
+.config/mutt/muttrc.local
+.imapfilter/accounts.lua
+.imapfilter/filters/*
+
 # Created by https://www.toptal.com/developers/gitignore/api/vim,macos,linux,windows,homebrew
 # Edit at https://www.toptal.com/developers/gitignore?templates=vim,macos,linux,windows,homebrew
 
