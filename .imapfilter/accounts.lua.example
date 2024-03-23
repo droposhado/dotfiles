@@ -1,0 +1,6 @@
+account = IMAP {
+    server = 'imap1.mail.server',
+    username = 'user1',
+    password = 'secret1',
+    ssl = 'ssl23',
+}
