@@ -113,7 +113,6 @@ install-dotfiles:
 	ln -sfn "${PWD}/.functions" "${HOME}/.functions"
 	ln -sfn "${PWD}/.gitconfig" "${HOME}/.gitconfig"
 	ln -sfn "${PWD}/.inputrc" "${HOME}/.inputrc"
-	ln -sfn "${PWD}/.taskrc" "${HOME}/.taskrc"
 	ln -sfn "${PWD}/.tmux.conf" "${HOME}/.tmux.conf"
 	ln -sfn "${PWD}/.vimrc" "${HOME}/.vimrc"
 	ln -sfn "${PWD}/.xinitrc" "${HOME}/.xinitrc"

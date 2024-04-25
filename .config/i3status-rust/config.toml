@@ -48,43 +48,6 @@ block = "sound"
 headphones_indicator = true
 
 [[block]]
-block = "taskwarrior"
-interval = 60
-format = " $icon $filter_name $count "
-format_singular = " $icon    1 "
-format_everything_done = " $icon    0 "
-warning_threshold = 10
-critical_threshold = 200
-
-# Start Taskwarrior filters
-
-[[block.filters]]
-name = "ty"
-filter = "+PENDING due:today"
-
-[[block.filters]]
-name = "tl"
-filter = "+PENDING"
-
-[[block.filters]]
-name = "hi"
-filter = "+PENDING priority:H"
-
-[[block.filters]]
-name = "md"
-filter = "+PENDING priority:M"
-
-[[block.filters]]
-name = "lw"
-filter = "+PENDING priority:L"
-
-[[block.filters]]
-name = "bl"
-filter = "+backlog"
-
-# End Taskwarrior filters
-
-[[block]]
 block = "time"
 interval = 5
 [block.format]

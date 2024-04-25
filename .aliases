@@ -20,9 +20,7 @@ alias k="kubectl"
 
 alias pss="ps aux | grep -i"
 
-alias t="task"
 alias tree="tree -a -I .git"
-alias tt="taskwarrior-ui"
 
 # macOS
 if [[ "$(uname -s)" == "Darwin" ]]; then
