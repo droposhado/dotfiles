@@ -9,7 +9,6 @@ Always installing minimal software and checking external installers.
 * **macOS** >= 10.15
 * **Debian** >= 11
 * **Arch**
-* **Fedora** > 36
 
 ## Packages (Linux)
 
@@ -75,21 +74,6 @@ Configure disk and users with wizard, finsh install, reboot with:
 Clone project from Github and install
 
 ```
-$ git clone https://github.com/droposhado/dotfiles.git "$HOME/.dotfiles"
-$ cd "$HOME/.dotfiles" || exit 1
-$ make install
-$ make install-vim
-```
-
-### Fedora (netinst)
-
-The `wheel` group is to use `sudo` command.
-
-```
-# dnf install --setopt=install_weak_deps=False ca-certificates curl \
-              redhat-lsb sudo automake gcc gcc-c++ make git gnupg
-# adduser -G wheel <new-user>
-# passwd <new-user>
 $ git clone https://github.com/droposhado/dotfiles.git "$HOME/.dotfiles"
 $ cd "$HOME/.dotfiles" || exit 1
 $ make install
