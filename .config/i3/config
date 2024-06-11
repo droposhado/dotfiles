@@ -264,3 +264,5 @@ exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/firefox'
 exec --no-startup-id i3-msg 'workspace 2; exec /usr/bin/urxvt'
 exec --no-startup-id i3-msg 'workspace 2; exec /usr/bin/urxvt'
 exec --no-startup-id i3-msg 'workspace 3; exec /usr/bin/urxvt'
+
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
