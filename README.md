@@ -22,7 +22,6 @@ Always installing minimal software and checking external installers.
 * **shell prompt**: [starship](https://starship.rs)
 * **notification**: dunst
 * **screenlocker**: i3lock
-* **text-expander**: [espanso](https://espanso.org/)
 * **multiplexer**: [tmux](https://github.com/tmux/tmux)
 
 ## Requirements
