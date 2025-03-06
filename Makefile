@@ -58,11 +58,9 @@ setup-Darwin: install-starship install-gvm
 	bash "$(PWD)/scripts/macos-config-rectangle.sh"
 	bash "$(PWD)/scripts/macos-config-itsycal.sh"
 	bash "$(PWD)/scripts/macos-config-tweetbot.sh"
-	bash "$(PWD)/scripts/macos-config-espanso.sh"
 
 setup-Linux: setup-$(DISTRO) install-pyenv install-starship install-gvm install-bun install-rustup
 	xdg-mime default org.pwmt.zathura.desktop application/pdf
-	ln -s "$(HOME)/docs/email/filters/src" "$(HOME)/.imapfilter/filters"
 
 setup-Debian:
 	sudo -E bash "$(PWD)/scripts/debian-config-locales.sh"
@@ -70,14 +68,18 @@ setup-Debian:
 	sudo bash "$(PWD)/scripts/debian-install-packages.sh"
 	sudo bash "$(PWD)/scripts/debian-install-docker.sh"
 
+	sudo systemctl enable systemd-resolved
+
 	# Needs packages installed
-	systemctl --user enable vdirsyncer.timer
-	systemctl --user start vdirsyncer.timer
-	systemctl --user enable offlineimap-oneshot.timer
-	systemctl --user start offlineimap-oneshot.timer
-	systemctl --user enable syncthing.service
-	systemctl --user start syncthing.service
+	#systemctl --user enable vdirsyncer.timer
+	#systemctl --user start vdirsyncer.timer
+	#systemctl --user enable offlineimap-oneshot.timer
+	#systemctl --user start offlineimap-oneshot.timer
+	#systemctl --user enable syncthing.service
+	#systemctl --user start syncthing.service
 	systemctl --user daemon-reload
+
+	sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 
 ################################################################################
 # INSTALL
@@ -120,14 +122,12 @@ install-dotfolders:
 	if test ! -d $(HOME)/.config; then mkdir $(HOME)/.config; fi
 	if test ! -d $(HOME)/.config/alacritty; then rm -rf $(HOME)/.config/alacritty; fi
 	if test ! -d $(HOME)/.config/dunst; then rm -rf $(HOME)/.config/dunst; fi
-	if test ! -d $(HOME)/.config/espanso; then rm -rf $(HOME)/.config/espanso; fi
 	if test ! -d $(HOME)/.config/git; then rm -rf $(HOME)/.config/git; fi
 	if test ! -d $(HOME)/.config/i3; then rm -rf $(HOME)/.config/i3; fi
 	if test ! -d $(HOME)/.config/i3status-rust; then rm -rf $(HOME)/.config/i3status-rust; fi
 	if test ! -d $(HOME)/.config/mpv; then rm -rf $(HOME)/.config/mpv; fi
 	if test ! -d $(HOME)/.config/mutt; then rm -rf $(HOME)/.config/mutt; fi
 	if test ! -d $(HOME)/.config/offlineimap; then rm -rf $(HOME)/.config/offlineimap; fi
-	if test ! -d $(HOME)/.config/polybar; then rm -rf $(HOME)/.config/polybar; fi
 	if test ! -d $(HOME)/.config/tmux; then rm -rf $(HOME)/.config/tmux; fi
 	if test ! -d $(HOME)/.config/tui-jornal; then rm -rf $(HOME)/.config/tui-jornal; fi
 	if test ! -d $(HOME)/.config/xresources; then rm -rf $(HOME)/.config/xresources; fi
@@ -136,14 +136,12 @@ install-dotfolders:
 	if test ! -d $(HOME)/.vim; then rm -rf $(HOME)/.vim; fi
 	ln -sfn "${PWD}/.config/alacritty" "${HOME}/.config/alacritty"
 	ln -sfn "${PWD}/.config/dunst" "${HOME}/.config/dunst"
-	ln -sfn "${PWD}/.config/espanso" "${HOME}/.config/espanso"
 	ln -sfn "${PWD}/.config/git" "${HOME}/.config/git"
 	ln -sfn "${PWD}/.config/i3" "${HOME}/.config/i3"
 	ln -sfn "${PWD}/.config/i3status-rust" "${HOME}/.config/i3status-rust"
 	ln -sfn "${PWD}/.config/mpv" "${HOME}/.config/mpv"
 	ln -sfn "${PWD}/.config/mutt" "${HOME}/.config/mutt"
 	ln -sfn "${PWD}/.config/offlineimap" "${HOME}/.config/offlineimap"
-	ln -sfn "${PWD}/.config/polybar" "${HOME}/.config/polybar"
 	ln -sfn "${PWD}/.config/tmux" "${HOME}/.config/tmux"
 	ln -sfn "${PWD}/.config/tui-journal" "${HOME}/.config/tui-journal"
 	ln -sfn "${PWD}/.config/xresources" "${HOME}/.config/xresources"

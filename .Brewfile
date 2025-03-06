@@ -9,7 +9,6 @@ cask_args appdir: "~/Applications", require_sha: true
 brew "fontconfig"
 brew "pyenv"
 brew "pyenv-virtualenv"
-brew "federico-terzi/espanso/espanso"
 brew "tmux"
 brew "vim"
 
