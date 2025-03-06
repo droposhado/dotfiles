@@ -60,7 +60,7 @@ setup-Darwin: install-starship install-gvm
 	bash "$(PWD)/scripts/macos-config-tweetbot.sh"
 	bash "$(PWD)/scripts/macos-config-espanso.sh"
 
-setup-Linux: setup-$(DISTRO) install-pyenv install-starship install-gvm
+setup-Linux: setup-$(DISTRO) install-pyenv install-starship install-gvm install-bun install-rustup
 	xdg-mime default org.pwmt.zathura.desktop application/pdf
 	ln -s "$(HOME)/docs/email/filters/src" "$(HOME)/.imapfilter/filters"
 
@@ -81,6 +81,11 @@ setup-Debian:
 
 ################################################################################
 # INSTALL
+
+install-bun:
+	if test ! -d "$(HOME)/.bun"; then \
+		bash "$(PWD)/scripts/common-install-bun.sh"; \
+	fi
 
 install-dotbins:
 	# instalation on /usr/local/bin prevines changes on commands
@@ -162,6 +167,11 @@ install-pyenv:
 		bash "$(PWD)/scripts/linux-install-pyenv.sh"; \
 	fi
 
+install-rustup:
+	if test ! -d "$(HOME)/.rustup"; then \
+		bash "$(PWD)/scripts/common-install-rustup.sh"; \
+	fi
+
 install-starship:
 	sudo mkdir -p /usr/local/bin
 	sh "$(PWD)/scripts/common-install-starship.sh" --yes
@@ -217,6 +227,11 @@ update-vim-plug:
 update-vim:
 	vim +PlugUpdate +qall
 
+update-bun-install-script:
+	#rm -rf "${PWD}/scripts/common-install-bun.sh"
+	curl -sSL https://bun.sh/install \
+		-o scripts/$(PREFIX_TEST)linux-install-bun.sh
+
 update-homebrew-install-script:
 	#rm -rf "${PWD}/scripts/macos-install-homebrew.sh"
 	curl -sSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh \
@@ -226,6 +241,11 @@ update-pyenv-install-script:
 	#rm -rf "${PWD}/scripts/linux-install-pyenv.sh"
 	curl -sSL https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer \
 		-o scripts/$(PREFIX_TEST)linux-install-pyenv.sh
+
+update-rustup-install-script:
+	#rm -rf "${PWD}/scripts/common-install-rustup.sh"
+	curl -sSL https://sh.rustup.rs \
+		-o scripts/$(PREFIX_TEST)common-install-rustup.sh
 
 update-starship-install-script:
 	#rm -rf "${PWD}/scripts/common-install-starship.sh"
@@ -302,5 +322,7 @@ test-lint-python:
 test-diff-install-script:
 	diff scripts/macos-install-homebrew.sh scripts/$(PREFIX_TEST)macos-install-homebrew.sh
 	diff scripts/linux-install-pyenv.sh scripts/$(PREFIX_TEST)linux-install-pyenv.sh
+	diff scripts/common-install-bun.sh scripts/$(PREFIX_TEST)common-install-bun.sh
+	diff scripts/common-install-rustup.sh scripts/$(PREFIX_TEST)common-install-rustup.sh
 	diff scripts/common-install-starship.sh scripts/$(PREFIX_TEST)common-install-starship.sh
 	diff scripts/common-install-gvm.sh scripts/$(PREFIX_TEST)common-install-gvm.sh

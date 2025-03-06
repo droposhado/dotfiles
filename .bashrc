@@ -22,3 +22,8 @@ if [[ -d "${PYENV_ROOT}" ]]; then
 fi
 
 eval "$(starship init bash)"
+
+if [[ -d "${HOME}/.cargo/env" ]]; then
+    . "$HOME/.cargo/env"
+fi
+
