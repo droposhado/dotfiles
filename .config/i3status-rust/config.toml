@@ -1,0 +1,87 @@
+double_click_delay = 200
+
+[icons]
+icons = "awesome5"
+
+[icons.overrides]
+cpu = "\uf2db"
+memory_mem = "\uf538"
+time = "\uf133"
+
+[theme]
+theme = "nord-dark"
+
+[theme.overrides]
+idle_fg = "#d8dee9"
+
+[[block]]
+block = "cpu"
+interval = 3
+format = " $icon $barchart $utilization "
+
+[[block]]
+block = "memory"
+format = " $icon $mem_used.eng(w:3,u:B,p:M) $cached $mem_total_used "
+
+[[block]]
+block = "disk_space"
+info_type = "available"
+alert_unit = "GB"
+alert = 10.0
+warning = 15.0
+format = " $icon $available "
+[[block.click]]
+button = "double_left"
+cmd = "nw vorta"
+
+[[block]]
+block = "docker"
+interval = 2
+format = " $icon $running $total $images "
+
+[[block]]
+block = "net"
+format = " $icon $graph_down "
+interval = 1
+
+[[block]]
+block = "sound"
+device_kind = "source"
+[[block.click]]
+button = "double_left"
+cmd = "pavucontrol -t 4"
+
+[[block]]
+block = "sound"
+headphones_indicator = true
+[[block.click]]
+button = "double_left"
+cmd = "pavucontrol -t 3"
+
+#[[block]]'
+#block = "bluetooth"
+#mac = ""
+#disconnected_format = ""
+#format = " $icon { $percentage } "
+
+[[block]]
+block = "time"
+interval = 5
+[block.format]
+full = " $icon $timestamp.datetime(f:'%Y-W%V-%u %m-%d %H:%M') "
+
+[[block]]
+block = "battery"
+interval = 10
+format = "$percentage {$time |}"
+if_command = "test -e /sys/class/power_supply/BAT0"
+
+[[block]]
+block = "menu"
+text = " \uf141 "
+[[block.items]]
+display = " &lt;    blueman  &gt; "
+cmd = "nw blueman-manager"
+[[block.items]]
+display = " &lt;     Lock    &gt; "
+cmd = "lock"
