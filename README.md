@@ -137,6 +137,8 @@ For external resources like fonts, scripts and other, see their respective licen
 - [scripts/common-install-starship.sh](scripts/common-install-starship.sh) - [LICENSE](https://github.com/starship/starship/blob/master/LICENSE) (script in [install/install.sh](https://github.com/starship/starship/blob/master/install/install.sh))
 - [scripts/macos-install-homebrew.sh](scripts/macos-install-homebrew.sh) - [LICENSE](https://github.com/Homebrew/install/blob/master/LICENSE.txt)
 - [scripts/linux-install-pyenv.sh](scripts/linux-install-pyenv.sh) - [LICENSE](https://github.com/pyenv/pyenv-installer/blob/master/LICENSE)
+- [scripts/common-install-bun.sh](scripts/common-install-bun.sh) - [LICENSE](https://github.com/oven-sh/bun/blob/main/LICENSE.md)  (script in [src/cli/install.sh](https://github.com/oven-sh/bun/blob/main/src/cli/install.sh))
+- [scripts/common-install-rustup.sh](scripts/common-install-rustup.sh) - [LICENSE](https://github.com/rust-lang/rustup/tree/master?tab=readme-ov-file#license)
 - [.hammerspoon/lit-slugify](.hammerspoon/lit-slugify) - [LICENSE](.hammerspoon/lit-slugify/LICENSE)
 - [.hammerspoon/string-trim](.hammerspoon/string-trim) - [LICENSE](.hammerspoon/string-trim/LICENSE)
 - [.vim/autoload/plug.vim](.vim/autoload/plug.vim) - [LICENSE](https://github.com/junegunn/vim-plug/blob/master/LICENSE)
