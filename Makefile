@@ -193,7 +193,9 @@ update: update-hammerspoon-lua update-tmux-nord-theme update-vim-plug \
 update-install-scripts: update-homebrew-install-script \
 	update-pyenv-install-script \
 	update-starship-install-script \
-	update-gvm-install-script
+	update-gvm-install-script \
+	update-bun-install-script \
+	update-rustup-install-script
 
 update-hammerspoon-lua: update-lit-slugify update-lit-string-trim
 
