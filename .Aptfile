@@ -26,6 +26,7 @@ i3-wm
 i3lock
 suckless-tools
 dunst
+systemd-resolved
 
 # i3 volume binds
 alsa-utils

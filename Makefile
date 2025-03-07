@@ -230,7 +230,7 @@ update-vim:
 update-bun-install-script:
 	#rm -rf "${PWD}/scripts/common-install-bun.sh"
 	curl -sSL https://bun.sh/install \
-		-o scripts/$(PREFIX_TEST)linux-install-bun.sh
+		-o scripts/$(PREFIX_TEST)common-install-bun.sh
 
 update-homebrew-install-script:
 	#rm -rf "${PWD}/scripts/macos-install-homebrew.sh"
