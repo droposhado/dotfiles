@@ -61,6 +61,10 @@ setup-Darwin: install-starship install-gvm
 
 setup-Linux: setup-$(DISTRO) install-pyenv install-starship install-gvm install-bun install-rustup
 	xdg-mime default org.pwmt.zathura.desktop application/pdf
+	
+	# https://stackoverflow.com/a/67185532
+	xdg-mime default firefox-esr.desktop x-scheme-handler/https
+	xdg-mime default firefox-esr.desktop x-scheme-handler/http
 
 setup-Debian:
 	sudo -E bash "$(PWD)/scripts/debian-config-locales.sh"
