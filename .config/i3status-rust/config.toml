@@ -43,6 +43,7 @@ format = " $icon $running $total $images "
 block = "net"
 format = " $icon $graph_down "
 interval = 1
+inactive_format = " $icon \uf00d "
 
 [[block]]
 block = "sound"
