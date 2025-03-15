@@ -11,8 +11,8 @@ alias g='git'
 # Default on Ubuntu, but extend for all
 alias grep="grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn"
 
-alias l="ls -lh"
-alias la="ls -lha"
+alias l="ls -lh --color"
+alias la="ls -lha --color"
 
 alias locate="locate -i"
 
