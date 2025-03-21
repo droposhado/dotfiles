@@ -86,3 +86,9 @@ cmd = "nw blueman-manager"
 [[block.items]]
 display = " &lt;     Lock    &gt; "
 cmd = "lock"
+[[block.items]]
+display = " &lt;    reboot   &gt; "
+cmd = "reboot"
+[[block.items]]
+display = " &lt;     halt    &gt; "
+cmd = "shutdown -h now"
