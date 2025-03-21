@@ -1,0 +1,19 @@
+# https://man.archlinux.org/man/zathurarc.5
+
+# automatic copy to clipboard on select
+set selection-clipboard clipboard
+
+set font                        "Fira Code"
+
+# c: the command line is displayed
+# s: the statusbar is displayed
+# h: the horizontal scrollbar is displayed
+# v: the vertical scrollbar is displayed.
+set guioptions                  "sv"
+
+# display original pdf colors
+# dont force recolor document
+set recolor                     "false"
+set recolor-keephue             "false"
+
+include base16-nord.config

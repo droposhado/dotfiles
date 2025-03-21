@@ -18,11 +18,10 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v4
 
-      - run: make update-install-scripts
-
-      - run: make update-hammerspoon-lua
-
-      - run: make update-fonts
+      - run: make update
 
       - name: Diff install scripts 
         run: make test-diff-install-script
+
+      - name: Diff themes
+        run: make test-diff-themes

@@ -131,6 +131,7 @@ install-dotfolders:
 	if test ! -d $(HOME)/.config/tui-jornal; then rm -rf $(HOME)/.config/tui-jornal; fi
 	if test ! -d $(HOME)/.config/xresources; then rm -rf $(HOME)/.config/xresources; fi
 	if test ! -d $(HOME)/.config/vdirsyncer; then rm -rf $(HOME)/.config/vdirsyncer; fi
+	if test ! -d $(HOME)/.config/zathura; then rm -rf $(HOME)/.config/zathura; fi
 	if test ! -d $(HOME)/.imapfilter; then rm -rf $(HOME)/.imapfilter; fi
 	if test ! -d $(HOME)/.vim; then rm -rf $(HOME)/.vim; fi
 	ln -sfn "${PWD}/.config/alacritty" "${HOME}/.config/alacritty"
@@ -145,6 +146,7 @@ install-dotfolders:
 	ln -sfn "${PWD}/.config/tui-journal" "${HOME}/.config/tui-journal"
 	ln -sfn "${PWD}/.config/xresources" "${HOME}/.config/xresources"
 	ln -sfn "${PWD}/.config/vdirsyncer" "${HOME}/.config/vdirsyncer"
+	ln -sfn "${PWD}/.config/zathura" "${HOME}/.config/zathura"
 	ln -sfn "${PWD}/.imapfilter" "${HOME}/.imapfilter"
 	ln -sfn "${PWD}/.vim" "${HOME}/.vim"
 	cp "${PWD}/.config/mutt/muttrc.local.example" "${HOME}/.config/mutt/muttrc.local"
@@ -155,8 +157,8 @@ install-bun:
 	fi
 
 install-fonts:
-	if test ! -d $(HOME)/.fonts; then mkdir $(HOME)/.fonts; fi
-	ln -sfn "${PWD}/.fonts/fontawesome" "${HOME}/.fonts/fontawesome"
+	#if test -d $(HOME)/.fonts; then rm -rf $(HOME)/.fonts; fi
+	ln -sfn "${PWD}/.fonts/" "${HOME}/.fonts"
 	fc-cache -f -v
 
 install-gvm:
@@ -261,6 +263,11 @@ update-gvm-install-script:
 	curl -sSL https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer \
 		-o scripts/$(PREFIX_TEST)common-install-gvm.sh
 
+update-zathura-nord-theme:
+	#rm -rf "${PWD}/.config/zathura/base16-nord.config"
+	curl -sSL https://raw.githubusercontent.com/HaoZeke/base16-zathura/refs/heads/main/build_schemes/recolors/base16-nord.config \
+		-o .config/zathura/$(PREFIX_TEST)base16-nord.config
+
 update-xresources-nord-theme:
 	curl -sSL https://github.com/nordtheme/xresources/archive/develop.tar.gz \
 		-o nord-xresources.tar.gz
@@ -330,3 +337,6 @@ test-diff-install-script:
 	diff scripts/common-install-rustup.sh scripts/$(PREFIX_TEST)common-install-rustup.sh
 	diff scripts/common-install-starship.sh scripts/$(PREFIX_TEST)common-install-starship.sh
 	diff scripts/common-install-gvm.sh scripts/$(PREFIX_TEST)common-install-gvm.sh
+
+test-diff-themes:
+	diff .config/zathura/base16-nord.config .config/zathura/$(PREFIX_TEST)base16-nord.config

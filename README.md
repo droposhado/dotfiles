@@ -145,3 +145,4 @@ For external resources like fonts, scripts and other, see their respective licen
 - [.config/alacritty/themes/nord.yml](.config/alacritty/themes/nord.yml) - [LICENSE](https://github.com/nordtheme/alacritty/blob/develop/LICENSE.md)
 - [.config/tmux/themes/nord-tmux](.config/tmux/themes/nord-tmux) - [LICENSE](.config/tmux/themes/nord-tmux/LICENSE.md)
 - [.config/xresources/themes/nord-xresources](.config/xresources/themes/nord-xresources) - [LICENSE](.config/xresources/themes/nord-xresources/LICENSE.md)
+- [.config/zathura/base16-nord.config](.config/zathura/base16-nord.config) - [LICENSE](https://github.com/HaoZeke/base16-zathura/blob/main/LICENSE.md) (script in [build_schemes/recolors/base16-nord.config](https://github.com/HaoZeke/base16-zathura/blob/main/build_schemes/recolors/base16-nord.config))
