@@ -12,6 +12,24 @@ for file in ~/.{aliases,gvm/scripts/gvm,exports,exports.local,functions,dockerfu
 done;
 unset file;
 
+# 'have' keyword for bash completion
+# https://stackoverflow.com/a/12874971
+# 
+# all variables set in .exports
+_have()
+{
+    # Completions for system administrator commands are installed as well in
+    # case completion is attempted via `sudo command ...'.
+    type $1 &>/dev/null
+}
+
+# Load the shell completions
+for file in $(ls /usr/share/bash-completion/completions/*)
+do
+   source "${file}"
+done
+unset file;
+
 # without override, change to apppend
 shopt -s histappend
 
