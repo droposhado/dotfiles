@@ -27,3 +27,6 @@ if [[ -d "${HOME}/.cargo/env" ]]; then
     . "$HOME/.cargo/env"
 fi
 
+if [[ -d "${HOME}/.deno/env" ]]; then
+    . "$HOME/.deno/env"
+fi
