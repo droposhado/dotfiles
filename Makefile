@@ -88,11 +88,6 @@ setup-Debian:
 ################################################################################
 # INSTALL
 
-install-bun:
-	if test ! -d "$(HOME)/.bun"; then \
-		bash "$(PWD)/scripts/common-install-bun.sh"; \
-	fi
-
 install-dotbins:
 	# instalation on /usr/local/bin prevines changes on commands
 	sudo cp $(PWD)/bin/horizonte.py /usr/local/bin/horizonte
@@ -153,6 +148,11 @@ install-dotfolders:
 	ln -sfn "${PWD}/.imapfilter" "${HOME}/.imapfilter"
 	ln -sfn "${PWD}/.vim" "${HOME}/.vim"
 	cp "${PWD}/.config/mutt/muttrc.local.example" "${HOME}/.config/mutt/muttrc.local"
+
+install-bun:
+	if test ! -d "$(HOME)/.bun"; then \
+		bash "$(PWD)/scripts/common-install-bun.sh"; \
+	fi
 
 install-fonts:
 	if test ! -d $(HOME)/.fonts; then mkdir $(HOME)/.fonts; fi
