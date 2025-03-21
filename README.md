@@ -8,7 +8,6 @@ Always installing minimal software and checking external installers.
 
 * **macOS** >= 10.15
 * **Debian** >= 11
-* **Arch**
 
 ## Packages (Linux)
 
@@ -54,41 +53,14 @@ $ make install
 $ make install-vim
 ```
 
-### Arch
-
-Download ISO from site, use live install with command:
-
-```
-# archinstall --config https://droposhado.org/archinstall
-```
-
-Configure disk and users with wizard, finsh install, reboot with:
-
-**Remove install media**
-
-```
-# shutdown -r now
-```
-
-Clone project from Github and install
-
-```
-$ git clone https://github.com/droposhado/dotfiles.git "$HOME/.dotfiles"
-$ cd "$HOME/.dotfiles" || exit 1
-$ make install
-$ make install-vim
-```
-
 ## Scripts folder
 
 Inside the scripts folder there are shell script files for configuring or updating the configurations/packages packages in this project.
 
- - **arch-\***: prefix represents files for Arch
  - **check-\***: contains check scripts for validating homebrew and apt packages;
  - **common-\***: common scripts between Linux and macOS;
  - **common-install-\***: official installation scripts for Linux and macOS;
  - **debian-\***: prefix represents files for Debian, not necessarily compatible with Debian like distributions;
- - **fedora-\***: prefix represents files for Fedora, not necessarily compatible with RHEL/CentOS like distributions;
  - **linux-\***: prefix represents files for Linux;
  - **linux-install-\***: official installation scripts for Linux;
  - **macos-\***: prefix represents files for macOS;
