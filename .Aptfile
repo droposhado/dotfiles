@@ -60,7 +60,7 @@ libreadline-dev
 libsqlite3-dev
 libncursesw5-dev
 xz-utils
-#tk-dev
+tk-dev
 libxml2-dev
 libxmlsec1-dev
 libffi-dev
@@ -71,6 +71,7 @@ pulseaudio
 pavucontrol
 
 # sofware packages
+alacritty
 firefox-esr
 rxvt-unicode
 mlocate
