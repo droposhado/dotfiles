@@ -4,12 +4,12 @@ alias ...="cd ../.."
 
 alias diff="diff -u"
 
-alias docker-cleanup=" docker compose down && docker compose rm && docker volume prune -f"
+alias docker-cleanup="docker compose down && docker compose rm && docker volume prune -f"
 
 alias g='git'
 
 # Default on Ubuntu, but extend for all
-alias grep="grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn"
+alias grep="grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn -i"
 
 alias l="ls -lh --color"
 alias la="ls -lha --color"
@@ -20,7 +20,7 @@ alias k="kubectl"
 
 alias pss="ps aux | grep -i"
 
-alias tree="tree -a -I .git"
+alias tree="tree -a -I .git -I venv -I node_modules -I .terraform"
 
 # macOS
 if [[ "$(uname -s)" == "Darwin" ]]; then

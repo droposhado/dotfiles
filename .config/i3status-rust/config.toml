@@ -69,7 +69,7 @@ cmd = "pavucontrol -t 3"
 block = "time"
 interval = 5
 [block.format]
-full = " $icon $timestamp.datetime(f:'%Y-W%V-%u %m-%d %H:%M') "
+full = " $icon $timestamp.datetime(f:'%Y-W%V-%u %m-%d %a %H:%M') "
 
 [[block]]
 block = "battery"
@@ -84,11 +84,11 @@ text = " \uf141 "
 display = " &lt;    blueman  &gt; "
 cmd = "nw blueman-manager"
 [[block.items]]
-display = " &lt;     Lock    &gt; "
+display = " &lt;     lock    &gt; "
 cmd = "lock"
 [[block.items]]
 display = " &lt;    reboot   &gt; "
-cmd = "reboot"
+cmd = "shutdown -r now"
 [[block.items]]
 display = " &lt;     halt    &gt; "
 cmd = "shutdown -h now"

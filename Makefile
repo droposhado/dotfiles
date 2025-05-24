@@ -127,6 +127,7 @@ install-dotfolders:
 	if test ! -d $(HOME)/.config/mpv; then rm -rf $(HOME)/.config/mpv; fi
 	if test ! -d $(HOME)/.config/mutt; then rm -rf $(HOME)/.config/mutt; fi
 	if test ! -d $(HOME)/.config/offlineimap; then rm -rf $(HOME)/.config/offlineimap; fi
+	if test ! -d $(HOME)/.config/rofi; then rm -rf $(HOME)/.config/rofi; fi
 	if test ! -d $(HOME)/.config/tmux; then rm -rf $(HOME)/.config/tmux; fi
 	if test ! -d $(HOME)/.config/tui-jornal; then rm -rf $(HOME)/.config/tui-jornal; fi
 	if test ! -d $(HOME)/.config/xresources; then rm -rf $(HOME)/.config/xresources; fi
@@ -142,6 +143,7 @@ install-dotfolders:
 	ln -sfn "${PWD}/.config/mpv" "${HOME}/.config/mpv"
 	ln -sfn "${PWD}/.config/mutt" "${HOME}/.config/mutt"
 	ln -sfn "${PWD}/.config/offlineimap" "${HOME}/.config/offlineimap"
+	ln -sfn "${PWD}/.config/rofi" "${HOME}/.config/rofi"
 	ln -sfn "${PWD}/.config/tmux" "${HOME}/.config/tmux"
 	ln -sfn "${PWD}/.config/tui-journal" "${HOME}/.config/tui-journal"
 	ln -sfn "${PWD}/.config/xresources" "${HOME}/.config/xresources"
