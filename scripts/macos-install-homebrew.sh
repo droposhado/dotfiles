@@ -39,6 +39,18 @@ then
   abort 'Bash must not run in POSIX mode. Please unset POSIXLY_CORRECT and try again.'
 fi
 
+# Check for file that prevents Homebrew installation
+if [[ -f "/etc/homebrew/brew.no_install" ]]
+then
+  BREW_NO_INSTALL="$(cat "/etc/homebrew/brew.no_install" 2>/dev/null)"
+  if [[ -n "${BREW_NO_INSTALL}" ]]
+  then
+    abort "Homebrew cannot be installed because ${BREW_NO_INSTALL}."
+  else
+    abort "Homebrew cannot be installed because /etc/homebrew/brew.no_install exists!"
+  fi
+fi
+
 # string formatters
 if [[ -t 1 ]]
 then
@@ -142,7 +154,7 @@ else
 fi
 
 # Required installation paths. To install elsewhere (which is unsupported)
-# you can untar https://github.com/Homebrew/brew/tarball/master
+# you can untar https://github.com/Homebrew/brew/tarball/main
 # anywhere you like.
 if [[ -n "${HOMEBREW_ON_MACOS-}" ]]
 then
@@ -175,7 +187,7 @@ else
   HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
   HOMEBREW_CACHE="${HOME}/.cache/Homebrew"
 
-  STAT_PRINTF=("/usr/bin/stat" "--printf")
+  STAT_PRINTF=("/usr/bin/stat" "-c")
   PERMISSION_FORMAT="%a"
   CHOWN=("/bin/chown")
   CHGRP=("/bin/chgrp")
@@ -208,7 +220,7 @@ MACOS_NEWEST_UNSUPPORTED="16.0"
 MACOS_OLDEST_SUPPORTED="13.0"
 
 # For Homebrew on Linux
-REQUIRED_RUBY_VERSION=2.6    # https://github.com/Homebrew/brew/pull/6556
+REQUIRED_RUBY_VERSION=3.4    # https://github.com/Homebrew/brew/pull/19779
 REQUIRED_GLIBC_VERSION=2.13  # https://docs.brew.sh/Homebrew-on-Linux#requirements
 REQUIRED_CURL_VERSION=7.41.0 # HOMEBREW_MINIMUM_CURL_VERSION in brew.sh in Homebrew/brew
 REQUIRED_GIT_VERSION=2.7.0   # HOMEBREW_MINIMUM_GIT_VERSION in brew.sh in Homebrew/brew
@@ -218,6 +230,13 @@ export HOMEBREW_NO_ANALYTICS_THIS_RUN=1
 export HOMEBREW_NO_ANALYTICS_MESSAGE_OUTPUT=1
 
 unset HAVE_SUDO_ACCESS # unset this from the environment
+
+# create paths.d file for /opt/homebrew installs
+# (/usr/local/bin is already in the PATH)
+if [[ -d "/etc/paths.d" && "${HOMEBREW_PREFIX}" != "/usr/local" && -x "$(command -v tee)" ]]
+then
+  ADD_PATHS_D=1
+fi
 
 have_sudo_access() {
   if [[ ! -x "/usr/bin/sudo" ]]
@@ -402,8 +421,8 @@ test_ruby() {
   fi
 
   "$1" --enable-frozen-string-literal --disable=gems,did_you_mean,rubyopt -rrubygems -e \
-    "abort if Gem::Version.new(RUBY_VERSION.to_s.dup).to_s.split('.').first(2) != \
-              Gem::Version.new('${REQUIRED_RUBY_VERSION}').to_s.split('.').first(2)" 2>/dev/null
+    "abort if Gem::Version.new(RUBY_VERSION) < \
+              Gem::Version.new('${REQUIRED_RUBY_VERSION}')" 2>/dev/null
 }
 
 test_curl() {
@@ -470,7 +489,7 @@ find_tool() {
 }
 
 no_usable_ruby() {
-  [[ -z "$(find_tool ruby)" ]]
+  [[ -z "$(find_tool ruby)" ]] || ! ruby -e "require 'erb'"
 }
 
 outdated_glibc() {
@@ -479,17 +498,22 @@ outdated_glibc() {
   version_lt "${glibc_version}" "${REQUIRED_GLIBC_VERSION}"
 }
 
-if [[ -n "${HOMEBREW_ON_LINUX-}" ]] && no_usable_ruby && outdated_glibc
+if [[ -n "${HOMEBREW_ON_LINUX-}" ]] && no_usable_ruby
 then
-  abort "$(
-    cat <<EOABORT
+  if outdated_glibc
+  then
+    abort "$(
+      cat <<EOABORT
 Homebrew requires Ruby ${REQUIRED_RUBY_VERSION} which was not found on your system.
 Homebrew portable Ruby requires Glibc version ${REQUIRED_GLIBC_VERSION} or newer,
 and your Glibc version is too old. See:
   ${tty_underline}https://docs.brew.sh/Homebrew-on-Linux#requirements${tty_reset}
 Please install Ruby ${REQUIRED_RUBY_VERSION} and add its location to your PATH.
 EOABORT
-  )"
+    )"
+  else
+    export HOMEBREW_FORCE_VENDOR_RUBY=1
+  fi
 fi
 
 # Invalidate sudo timestamp before exiting (if it wasn't active before).
@@ -551,18 +575,9 @@ then
     abort "Homebrew is only supported on Intel and ARM processors!"
   fi
 else
-  # On Linux, support only 64-bit Intel
-  if [[ "${UNAME_MACHINE}" == "aarch64" ]]
+  if [[ "${UNAME_MACHINE}" != "x86_64" ]] && [[ "${UNAME_MACHINE}" != "aarch64" ]]
   then
-    abort "$(
-      cat <<EOABORT
-Homebrew on Linux is not supported on ARM processors.
-  ${tty_underline}https://docs.brew.sh/Homebrew-on-Linux#arm-unsupported${tty_reset}
-EOABORT
-    )"
-  elif [[ "${UNAME_MACHINE}" != "x86_64" ]]
-  then
-    abort "Homebrew on Linux is only supported on Intel processors!"
+    abort "Homebrew on Linux is only supported on Intel x86_64 and ARM64 processors!"
   fi
 fi
 
@@ -615,9 +630,13 @@ echo "${HOMEBREW_PREFIX}/share/man/man1/brew.1"
 echo "${HOMEBREW_PREFIX}/share/zsh/site-functions/_brew"
 echo "${HOMEBREW_PREFIX}/etc/bash_completion.d/brew"
 echo "${HOMEBREW_REPOSITORY}"
+if [[ -n "${ADD_PATHS_D-}" ]]
+then
+  echo "/etc/paths.d/homebrew"
+fi
 
 # Keep relatively in sync with
-# https://github.com/Homebrew/brew/blob/master/Library/Homebrew/keg.rb
+# https://github.com/Homebrew/brew/blob/HEAD/Library/Homebrew/keg.rb
 directories=(
   bin etc include lib sbin share opt var
   Frameworks
@@ -810,12 +829,7 @@ execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "${HOMEBREW_REPOSITORY}"
 
 if ! [[ -d "${HOMEBREW_CACHE}" ]]
 then
-  if [[ -n "${HOMEBREW_ON_MACOS-}" ]]
-  then
-    execute_sudo "${MKDIR[@]}" "${HOMEBREW_CACHE}"
-  else
-    execute "${MKDIR[@]}" "${HOMEBREW_CACHE}"
-  fi
+  execute "${MKDIR[@]}" "${HOMEBREW_CACHE}"
 fi
 if exists_but_not_writable "${HOMEBREW_CACHE}"
 then
@@ -940,11 +954,12 @@ ohai "Downloading and installing Homebrew..."
   cd "${HOMEBREW_REPOSITORY}" >/dev/null || return
 
   # we do it in four steps to avoid merge errors when reinstalling
-  execute "${USABLE_GIT}" "-c" "init.defaultBranch=master" "init" "--quiet"
+  execute "${USABLE_GIT}" "-c" "init.defaultBranch=main" "init" "--quiet"
 
   # "git remote add" will fail if the remote is defined in the global config
   execute "${USABLE_GIT}" "config" "remote.origin.url" "${HOMEBREW_BREW_GIT_REMOTE}"
   execute "${USABLE_GIT}" "config" "remote.origin.fetch" "+refs/heads/*:refs/remotes/origin/*"
+  execute "${USABLE_GIT}" "config" "--bool" "fetch.prune" "true"
 
   # ensure we don't munge line endings on checkout
   execute "${USABLE_GIT}" "config" "--bool" "core.autocrlf" "false"
@@ -963,7 +978,7 @@ ohai "Downloading and installing Homebrew..."
 
   execute "${USABLE_GIT}" "remote" "set-head" "origin" "--auto" >/dev/null
 
-  LATEST_GIT_TAG="$("${USABLE_GIT}" tag --list --sort="-version:refname" | head -n1)"
+  LATEST_GIT_TAG="$("${USABLE_GIT}" -c "column.ui=never" tag --list --sort="-version:refname" | head -n1)"
   if [[ -z "${LATEST_GIT_TAG}" ]]
   then
     abort "Failed to query latest Homebrew/brew Git tag."
@@ -989,29 +1004,41 @@ ohai "Downloading and installing Homebrew..."
       execute "${MKDIR[@]}" "${HOMEBREW_CORE}"
       cd "${HOMEBREW_CORE}" >/dev/null || return
 
-      execute "${USABLE_GIT}" "-c" "init.defaultBranch=master" "init" "--quiet"
+      execute "${USABLE_GIT}" "-c" "init.defaultBranch=main" "init" "--quiet"
       execute "${USABLE_GIT}" "config" "remote.origin.url" "${HOMEBREW_CORE_GIT_REMOTE}"
       execute "${USABLE_GIT}" "config" "remote.origin.fetch" "+refs/heads/*:refs/remotes/origin/*"
+      execute "${USABLE_GIT}" "config" "--bool" "fetch.prune" "true"
       execute "${USABLE_GIT}" "config" "--bool" "core.autocrlf" "false"
       execute "${USABLE_GIT}" "config" "--bool" "core.symlinks" "true"
       retry 5 "${USABLE_GIT}" "fetch" "--force" "${quiet_progress[@]}" \
-        "origin" "refs/heads/master:refs/remotes/origin/master"
+        "origin" "refs/heads/main:refs/remotes/origin/main"
       execute "${USABLE_GIT}" "remote" "set-head" "origin" "--auto" >/dev/null
-      execute "${USABLE_GIT}" "reset" "--hard" "origin/master"
+      execute "${USABLE_GIT}" "reset" "--hard" "origin/main"
 
       cd "${HOMEBREW_REPOSITORY}" >/dev/null || return
     ) || exit 1
   fi
 
-  execute "${HOMEBREW_PREFIX}/bin/brew" "update" "--force" "--quiet"
-) || exit 1
+  if [[ -n "${ADD_PATHS_D-}" ]]
+  then
+    execute_sudo "${MKDIR[@]}" /etc/paths.d
+    echo "${HOMEBREW_PREFIX}/bin" | execute_sudo tee /etc/paths.d/homebrew
+    execute_sudo "${CHOWN[@]}" root:wheel /etc/paths.d/homebrew
+    execute_sudo "${CHMOD[@]}" "a+r" /etc/paths.d/homebrew
+  elif [[ ":${PATH}:" != *":${HOMEBREW_PREFIX}/bin:"* ]]
+  then
+    PATH_WARN=1
+  fi
 
-if [[ ":${PATH}:" != *":${HOMEBREW_PREFIX}/bin:"* ]]
-then
-  warn "${HOMEBREW_PREFIX}/bin is not in your PATH.
+  execute "${HOMEBREW_PREFIX}/bin/brew" "update" "--force" "--quiet"
+
+  if [[ -n "${PATH_WARN-}" ]]
+  then
+    warn "${HOMEBREW_PREFIX}/bin is not in your PATH.
   Instructions on how to configure your shell for Homebrew
   can be found in the 'Next steps' section below."
-fi
+  fi
+) || exit 1
 
 ohai "Installation successful!"
 echo
