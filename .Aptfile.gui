@@ -1,0 +1,66 @@
+# i3
+xorg
+i3-wm
+i3lock
+suckless-tools
+dunst
+
+# font utils
+fontconfig
+
+# fonts (terminal)
+fonts-firacode
+
+# fonts (japanese support)
+fonts-takao-mincho
+fonts-takao
+
+# https://en.wikipedia.org/wiki/Help:Multilingual_support_(East_Asian)
+fonts-arphic-ukai
+fonts-arphic-uming
+fonts-ipafont-mincho
+fonts-ipafont-gothic
+fonts-unfonts-core
+
+# i3 volume binds
+alsa-utils
+playerctl
+
+# dmenu opens
+xdg-utils
+
+# screenshot
+xdotool
+maim
+
+# volume control
+pulseaudio
+pavucontrol
+
+# sofware packages
+alacritty
+firefox-esr
+rxvt-unicode
+mlocate
+transmission
+mpv
+rofi
+zathura
+xclip
+
+# backup
+borgbackup
+vorta
+
+# mail
+offlineimap3
+imapfilter
+
+# (card, cal) * DAV
+vdirsyncer
+
+# horizonte
+python3-alsaaudio
+python3-psutil
+
+

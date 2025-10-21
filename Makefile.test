@@ -1,0 +1,46 @@
+
+test: test-check-apt-packages test-check-homebrew-packages
+
+test-check-apt-packages:
+	docker build -t debs --build-arg IMAGE=debian:buster -f $(DOCKER_APT_IMAGE) .
+	docker build -t debl --build-arg IMAGE=debian:bullseye -f $(DOCKER_APT_IMAGE) .
+	docker build -t ubuf --build-arg IMAGE=ubuntu:focal -f $(DOCKER_APT_IMAGE) .
+	docker build -t ubuj --build-arg IMAGE=ubuntu:jammy -f $(DOCKER_APT_IMAGE) .
+
+test-check-homebrew-packages:
+	python scripts/check_packages_homebrew.py .Brewfile
+
+test-lint-lua:
+	luacheck .
+
+test-lint-shellscript:
+	# The --shell=bash remove shebang error
+	shellcheck --shell=bash .aliases
+	shellcheck --shell=bash .bash_profile
+	shellcheck --shell=bash .bashrc
+	shellcheck --shell=bash .exports
+	shellcheck --shell=bash .functions
+	shellcheck --shell=bash .xinitrc
+	shellcheck bin/lock
+	shellcheck bin/logout
+	shellcheck bin/ngit
+	shellcheck bin/nw
+	shellcheck bin/week
+
+test-lint-python:
+	find . -name "*.py" -not -path "./.vim/*" | xargs pylint
+	flake8
+	isort .
+	bandit -r . -v
+
+test-diff-install-script:
+	diff scripts/macos-install-homebrew.sh scripts/$(PREFIX_TEST)macos-install-homebrew.sh
+	diff scripts/linux-install-pyenv.sh scripts/$(PREFIX_TEST)linux-install-pyenv.sh
+	diff scripts/common-install-bun.sh scripts/$(PREFIX_TEST)common-install-bun.sh
+	diff scripts/common-install-deno.sh scripts/$(PREFIX_TEST)common-install-deno.sh
+	diff scripts/common-install-rustup.sh scripts/$(PREFIX_TEST)common-install-rustup.sh
+	diff scripts/common-install-starship.sh scripts/$(PREFIX_TEST)common-install-starship.sh
+	diff scripts/common-install-gvm.sh scripts/$(PREFIX_TEST)common-install-gvm.sh
+
+test-diff-themes:
+	diff .config/zathura/base16-nord.config .config/zathura/$(PREFIX_TEST)base16-nord.config

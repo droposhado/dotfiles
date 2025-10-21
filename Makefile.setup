@@ -1,0 +1,64 @@
+
+setup: setup-$(OS)
+
+setup-Darwin: install-starship install-gvm
+	chsh -s /bin/bash
+
+	sudo scutil --set LocalHostName $(HOSTNAME)
+	sudo scutil --set ComputerName $(HOSTNAME)
+	sudo scutil --set ComputerName $(HOSTNAME)
+
+	bash "$(PWD)/scripts/macos-config-general.sh"
+	bash "$(PWD)/scripts/macos-config-battery.sh"
+	bash "$(PWD)/scripts/macos-config-desktop.sh"
+	bash "$(PWD)/scripts/macos-config-energy-saving.sh"
+	bash "$(PWD)/scripts/macos-config-finder.sh"
+	bash "$(PWD)/scripts/macos-config-input.sh"
+	bash "$(PWD)/scripts/macos-config-mac-app-store.sh"
+	bash "$(PWD)/scripts/macos-config-mail.sh"
+	bash "$(PWD)/scripts/macos-config-photos.sh"
+	bash "$(PWD)/scripts/macos-config-safari.sh"
+	bash "$(PWD)/scripts/macos-config-screen.sh"
+	bash "$(PWD)/scripts/macos-config-timemachine.sh"
+
+	bash "$(PWD)/scripts/macos-install-homebrew.sh"
+	bash "$(PWD)/scripts/macos-install-homebrew-packages.sh"
+	bash "$(PWD)/scripts/macos-config-rectangle.sh"
+	bash "$(PWD)/scripts/macos-config-itsycal.sh"
+	bash "$(PWD)/scripts/macos-config-tweetbot.sh"
+
+setup-Linux: setup-$(DISTRO) setup-xorg setup-systemd install-pyenv install-starship install-gvm install-bun install-deno install-rustup
+	xdg-mime default org.pwmt.zathura.desktop application/pdf
+	
+	# https://stackoverflow.com/a/67185532
+	xdg-mime default firefox-esr.desktop x-scheme-handler/https
+	xdg-mime default firefox-esr.desktop x-scheme-handler/http
+
+setup-Debian:
+	sudo locale-gen "$(LOCALE).UTF-8"
+	sudo dpkg-reconfigure -f noninteractive locales
+	sudo update-locale LANG=$(LOCALE).utf8
+
+	sudo -E bash "$(PWD)/scripts/debian-config-sourceslist.sh"
+	sudo bash "$(PWD)/scripts/debian-install-packages.sh"
+	sudo bash "$(PWD)/scripts/debian-install-docker.sh"
+
+setup-xorg:
+	# only copy, link create a security leaks
+	sudo cp etc/X11/xorg.conf.d/20-lg-monitor-23mp55.conf /etc/X11/xorg.conf.d
+
+setup-systemd:
+	sudo timedatectl set-timezone $(TIMEZONE)
+
+	sudo cp etc/systemd/resolved.conf /etc/systemd/resolved.conf
+	sudo cp etc/systemd/timesyncd.conf /etc/systemd/timesyncd.conf
+
+	# Needs packages installed
+	sudo systemctl enable systemd-resolved
+	sudo systemctl start systemd-resolved
+
+	#systemctl --user enable vdirsyncer.timer
+	#systemctl --user start vdirsyncer.timer
+	#systemctl --user enable offlineimap-oneshot.timer
+	#systemctl --user start offlineimap-oneshot.timer
+	systemctl --user daemon-reload

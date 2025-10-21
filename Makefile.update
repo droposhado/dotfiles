@@ -1,0 +1,110 @@
+update: update-hammerspoon-lua \
+	update-tmux-nord-theme \
+	update-vim-plug \
+	update-vim \
+	update-install-scripts \
+	update-xresources-nord-theme \
+	update-fonts
+
+update-install-scripts: update-gvm-install-script \
+	update-bun-install-script \
+	update-deno-install-script \
+	update-homebrew-install-script \
+	update-pyenv-install-script \
+	update-rustup-install-script \
+	update-starship-install-script
+
+update-hammerspoon-lua: update-lit-slugify update-lit-string-trim
+
+update-fonts: update-font-fontawesome update-font-noto
+
+update-lit-slugify:
+	curl -sSL https://github.com/james2doyle/lit-slugify/archive/master.tar.gz \
+		-o lit-slugify.tar.gz
+	tar -xzvf "${PWD}/lit-slugify.tar.gz" -C "${PWD}/.hammerspoon/lit-slugify" --strip-components=1
+	rm -rf lit-slugify.tar.gz
+
+update-lit-string-trim:
+	curl -sSL https://github.com/james2doyle/lit-string-trim/archive/master.tar.gz \
+		-o lit-string.tar.gz
+	tar -xzvf "${PWD}/lit-string.tar.gz" -C "${PWD}/.hammerspoon/string-trim" --strip-components=1
+	rm -rf lit-string.tar.gz
+
+update-tmux-nord-theme:
+	curl -sSL https://github.com/nordtheme/tmux/archive/develop.tar.gz \
+		-o nord-tmux.tar.gz
+	tar -xzvf "${PWD}/nord-tmux.tar.gz" -C "${PWD}/.config/tmux/themes/nord-tmux" --strip-components=1
+	rm -rf nord-tmux.tar.gz
+
+update-vim-plug:
+	rm -rf "${PWD}/.vim/autoload/plug.vim"
+	curl -fLo "${PWD}/.vim/autoload/plug.vim" --create-dirs \
+		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+update-vim:
+	vim +PlugUpdate +qall
+
+update-bun-install-script:
+	#rm -rf "${PWD}/scripts/common-install-bun.sh"
+	curl -sSL https://bun.sh/install \
+		-o scripts/$(PREFIX_TEST)common-install-bun.sh
+
+update-deno-install-script:
+	#rm -rf "${PWD}/scripts/common-install-deno.sh"
+	curl -sSL https://deno.land/install.sh \
+		-o scripts/$(PREFIX_TEST)common-install-deno.sh
+
+update-homebrew-install-script:
+	#rm -rf "${PWD}/scripts/macos-install-homebrew.sh"
+	curl -sSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh \
+		-o scripts/$(PREFIX_TEST)macos-install-homebrew.sh
+
+update-pyenv-install-script:
+	#rm -rf "${PWD}/scripts/linux-install-pyenv.sh"
+	curl -sSL https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer \
+		-o scripts/$(PREFIX_TEST)linux-install-pyenv.sh
+
+update-rustup-install-script:
+	#rm -rf "${PWD}/scripts/common-install-rustup.sh"
+	curl -sSL https://sh.rustup.rs \
+		-o scripts/$(PREFIX_TEST)common-install-rustup.sh
+
+update-starship-install-script:
+	#rm -rf "${PWD}/scripts/common-install-starship.sh"
+	curl -sSL https://starship.rs/install.sh \
+		-o scripts/$(PREFIX_TEST)common-install-starship.sh
+
+update-gvm-install-script:
+	#rm -rf "${PWD}/scripts/common-install-gvm.sh"
+	curl -sSL https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer \
+		-o scripts/$(PREFIX_TEST)common-install-gvm.sh
+
+update-zathura-nord-theme:
+	#rm -rf "${PWD}/.config/zathura/base16-nord.config"
+	curl -sSL https://raw.githubusercontent.com/HaoZeke/base16-zathura/refs/heads/main/build_schemes/recolors/base16-nord.config \
+		-o .config/zathura/$(PREFIX_TEST)base16-nord.config
+
+update-xresources-nord-theme:
+	curl -sSL https://github.com/nordtheme/xresources/archive/develop.tar.gz \
+		-o nord-xresources.tar.gz
+	tar -xzvf "${PWD}/nord-xresources.tar.gz" -C "${PWD}/.config/xresources/themes/nord-xresources" \
+		--strip-components=1
+	rm -rf nord-xresources.tar.gz
+
+update-font-fontawesome:
+	curl -sSL https://github.com/FortAwesome/Font-Awesome/archive/master.tar.gz \
+		-o fontawesome.tar.gz
+	mkdir fontawesome
+	tar -xzvf "${PWD}/fontawesome.tar.gz" -C "${PWD}/fontawesome" --strip-components=1
+	mv "${PWD}/fontawesome/otfs/"*.otf "${PWD}/.fonts/fontawesome"
+	rm -rf fontawesome.tar.gz
+	rm -rf fontawesome
+
+update-font-noto:
+	curl -sSL https://github.com/googlefonts/noto-emoji/archive/main.tar.gz \
+		-o noto-emoji.tar.gz
+	mkdir noto-emoji
+	tar -xzvf "${PWD}/noto-emoji.tar.gz" -C "${PWD}/noto-emoji" --strip-components=1
+	mv "${PWD}/noto-emoji/fonts/"*.ttf "${PWD}/.fonts/noto/"
+	rm -rf noto-emoji.tar.gz
+	rm -rf noto-emoji

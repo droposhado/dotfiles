@@ -1,104 +1,10 @@
-# essentials
-git
-build-essential
-openssh-client
+vim
 
-# font utils
-fontconfig
-
-# fonts (terminal)
-fonts-firacode
-
-# fonts (japanese support)
-fonts-takao-mincho
-fonts-takao
-
-# https://en.wikipedia.org/wiki/Help:Multilingual_support_(East_Asian)
-fonts-arphic-ukai
-fonts-arphic-uming
-fonts-ipafont-mincho
-fonts-ipafont-gothic
-fonts-unfonts-core
-
-# i3
-xorg
-i3-wm
-i3lock
-suckless-tools
-dunst
+# network
 systemd-resolved
-
-# i3 volume binds
-alsa-utils
-playerctl
-
-# dmenu opens
-xdg-utils
-
-# screenshot
-xdotool
-maim
 
 # file system
 cifs-utils
 exfat-fuse
 jmtpfs
 ntfs-3g
-
-# dev
-bison
-gdb
-meld
-tmux
-vim
-
-# pyenv - https://github.com/pyenv/pyenv/wiki#suggested-build-environment
-libssl-dev
-zlib1g-dev
-libbz2-dev
-libreadline-dev
-libsqlite3-dev
-libncursesw5-dev
-xz-utils
-tk-dev
-libxml2-dev
-libxmlsec1-dev
-libffi-dev
-liblzma-dev
-
-# volume control
-pulseaudio
-pavucontrol
-
-# sofware packages
-alacritty
-firefox-esr
-rxvt-unicode
-mlocate
-transmission
-mpv
-rofi
-zathura
-xclip
-
-# backup
-borgbackup
-vorta
-
-# mail
-offlineimap3
-imapfilter
-
-# (card, cal) * DAV
-vdirsyncer
-
-# horizonte
-python3-alsaaudio
-python3-psutil
-
-# amd/ati graphics - https://wiki.debian.org/AtiHowTo
-firmware-amd-graphics
-libgl1-mesa-dri
-libglx-mesa0
-mesa-vulkan-drivers
-xserver-xorg-video-all

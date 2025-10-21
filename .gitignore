@@ -2,6 +2,7 @@
 .vim/plugged/*
 .uuid
 scripts/test_*
+.vscode/*
 
 # ignore sensible data
 
