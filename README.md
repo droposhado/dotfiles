@@ -7,7 +7,7 @@ Always installing minimal software and checking external installers.
 ## Supported systems
 
 * **macOS** >= 10.15
-* **Debian** >= 11
+* **Debian** >= 13
 
 ## Packages (Linux)
 
@@ -29,10 +29,7 @@ Always installing minimal software and checking external installers.
 
 ```
 $ sudo xcodebuild -license accept
-$ git clone https://github.com/droposhado/dotfiles.git "$HOME/.dotfiles"
-$ cd "$HOME/.dotfiles" || exit 1
-$ make install
-$ make install-vim
+$ sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply <github-user>
 ```
 
 ### Debian (minimal)
@@ -47,25 +44,8 @@ $ make install-vim
 Logout and login again (for sudo effect), now:
 
 ```
-$ git clone https://github.com/droposhado/dotfiles.git "$HOME/.dotfiles"
-$ cd "$HOME/.dotfiles" || exit 1
-$ make install
-$ make install-vim
+$ sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply <github-user>
 ```
-
-## Scripts folder
-
-Inside the scripts folder there are shell script files for configuring or updating the configurations/packages packages in this project.
-
- - **check-\***: contains check scripts for validating homebrew and apt packages;
- - **common-\***: common scripts between Linux and macOS;
- - **common-install-\***: official installation scripts for Linux and macOS;
- - **debian-\***: prefix represents files for Debian, not necessarily compatible with Debian like distributions;
- - **linux-\***: prefix represents files for Linux;
- - **linux-install-\***: official installation scripts for Linux;
- - **macos-\***: prefix represents files for macOS;
- - **macos-install-\***: official installation scripts for macOS;
- - **macos-config-\***: configure macOS or applications.
 
 ## Linters file
 
@@ -74,7 +54,6 @@ This repository store scripts for many languages, the files below show which lan
 - **.bandit**: for Python to use with [bandit](https://github.com/PyCQA/bandit);
 - **.flake8**: for Python to use with [flake8](https://flake8.pycqa.org/en/latest/);
 - **.isort.cfg**: for Python to use with [isort](https://pycqa.github.io/isort/);
-- **.luacheckrc**: for Lua to use with [luacheck](https://github.com/mpeterv/luacheck);
 - **.pylintrc**: for Python to use with [pylint](https://github.com/PyCQA/pylint).
 
 ## Inspired by
@@ -106,13 +85,6 @@ For external resources like fonts, scripts and other, see their respective licen
 - [.dockerfunctions](.dockerfunctions) - [LICENSE](https://github.com/jessfraz/dotfiles/blob/master/LICENSE)
 - [.fonts/fontawesome](.fonts/fontawesome) - [LICENSE](https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt)
 - [.fonts/noto](.fonts/noto) - [LICENSE](https://github.com/googlefonts/noto-emoji/blob/main/LICENSE)
-- [scripts/common-install-starship.sh](scripts/common-install-starship.sh) - [LICENSE](https://github.com/starship/starship/blob/master/LICENSE) (script in [install/install.sh](https://github.com/starship/starship/blob/master/install/install.sh))
-- [scripts/macos-install-homebrew.sh](scripts/macos-install-homebrew.sh) - [LICENSE](https://github.com/Homebrew/install/blob/master/LICENSE.txt)
-- [scripts/linux-install-pyenv.sh](scripts/linux-install-pyenv.sh) - [LICENSE](https://github.com/pyenv/pyenv-installer/blob/master/LICENSE)
-- [scripts/common-install-bun.sh](scripts/common-install-bun.sh) - [LICENSE](https://github.com/oven-sh/bun/blob/main/LICENSE.md)  (script in [src/cli/install.sh](https://github.com/oven-sh/bun/blob/main/src/cli/install.sh))
-- [scripts/common-install-rustup.sh](scripts/common-install-rustup.sh) - [LICENSE](https://github.com/rust-lang/rustup/tree/master?tab=readme-ov-file#license)
-- [.hammerspoon/lit-slugify](.hammerspoon/lit-slugify) - [LICENSE](.hammerspoon/lit-slugify/LICENSE)
-- [.hammerspoon/string-trim](.hammerspoon/string-trim) - [LICENSE](.hammerspoon/string-trim/LICENSE)
 - [.vim/autoload/plug.vim](.vim/autoload/plug.vim) - [LICENSE](https://github.com/junegunn/vim-plug/blob/master/LICENSE)
 - [.config/alacritty/themes/nord.yml](.config/alacritty/themes/nord.yml) - [LICENSE](https://github.com/nordtheme/alacritty/blob/develop/LICENSE.md)
 - [.config/rofi/themes/nord.rasi](.config/rofi/themes/nord.rasi) - [LICENSE](https://github.com/amayer5125/nord-rofi/blob/master/LICENSE)

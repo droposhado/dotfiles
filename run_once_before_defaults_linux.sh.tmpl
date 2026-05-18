@@ -1,0 +1,35 @@
+#!/bin/bash
+
+
+{{ if contains .chezmoi.osRelease.idLike "debian" }}
+  CODINAME=$(lsb_release -cs)
+
+  sudo cat <<-EOF > /etc/apt/sources.list
+deb http://deb.debian.org/debian/ ${CODINAME} main contrib non-free non-free-firmware
+deb-src http://deb.debian.org/debian/ ${CODINAME} main contrib non-free non-free-firmware
+
+deb http://deb.debian.org/debian/ ${CODINAME}-updates main contrib non-free non-free-firmware
+deb-src http://deb.debian.org/debian/ ${CODINAME}-updates main contrib non-free non-free-firmware
+
+deb http://security.debian.org/debian-security ${CODINAME}-security main contrib non-free non-free-firmware
+deb-src http://security.debian.org/debian-security ${CODINAME}-security main contrib non-free non-free-firmware
+EOF
+
+  sudo apt-get update
+  sudo apt-get install -y "linux-headers-$(uname -r)" --no-install-recommends
+
+  sudo apt-get install -y --no-install-recommends {{ join " " .packages_base }}
+
+  {{ if .amd }}
+    sudo apt-get install -y --no-install-recommends {{ join " " .packages_amd }}
+  {{ end }}
+
+  {{ if .dev }}
+    sudo apt-get install -y --no-install-recommends {{ join " " .packages_dev }}
+  {{ end }}
+
+  {{ if .gui }}
+    sudo apt-get install -y --no-install-recommends {{ join " " .packages_gui }}
+  {{ end }}
+
+{{ end }}

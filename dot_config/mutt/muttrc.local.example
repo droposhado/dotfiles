@@ -1,0 +1,5 @@
+set my_smtp_server=<host>
+set my_user=<MAILBOX_FULL_ADDRESS>
+set my_pass=<MAILBOX_PASSWORD>
+set realname = '<FROM_NAME>'
+set from = <MAILBOX_FULL_ADDRESS>

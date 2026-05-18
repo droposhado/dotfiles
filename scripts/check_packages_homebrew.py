@@ -3,6 +3,7 @@ import sys
 
 import requests
 
+
 BASE_URL = "https://formulae.brew.sh/api/{}/{}.json"
 GH_RAW_URL = "https://raw.githubusercontent.com/{}/homebrew-{}/master/{}/{}.rb"
 IGNORE_PACKAGES = []

@@ -1,6 +1,0 @@
-# amd/ati graphics - https://wiki.debian.org/AtiHowTo
-firmware-amd-graphics
-libgl1-mesa-dri
-libglx-mesa0
-mesa-vulkan-drivers
-xserver-xorg-video-all
