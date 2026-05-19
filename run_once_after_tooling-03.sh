@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 [ -d "$HOME/.bun" ] || curl -fsSL https://bun.sh/install | bash
 [ -d "$HOME/.deno" ] || curl -fsSL https://deno.land/install.sh | sh

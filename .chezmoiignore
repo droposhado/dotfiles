@@ -1,0 +1,14 @@
+README.md
+LICENSE
+*.md
+etc/*
+scripts*
+.github/*
+.bandit
+.flake8
+.gitignore
+.isort.cfg
+.pylintrc
+_*
+archinstall.json
+tests.sh

@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-AMD=$(chezmoi execute-template '{{ .chezmoidata.amd }}')
-DEV=$(chezmoi execute-template '{{ .chezmoidata.dev }}')
-GUI=$(chezmoi execute-template '{{ .chezmoidata.gui }}')
-
 if command -v apt-get >/dev/null; then
   CODINAME=$(lsb_release -cs)
 
@@ -25,17 +21,17 @@ EOF
   sudo apt-get install -y --no-install-recommends \
     $(chezmoi execute-template '{{ join " " .chezmoidata.packages.base }}')
 
-  if [ "$AMD" = "true" ]; then
+  if [ "${AMD}" = "1" ]; then
     sudo apt-get install -y --no-install-recommends \
       $(chezmoi execute-template '{{ join " " .chezmoidata.packages.amd }}')
   fi
 
-  if [ "$DEV" = "true" ]; then
+  if [ "${DEV}" = "1" ]; then
     sudo apt-get install -y --no-install-recommends \
       $(chezmoi execute-template '{{ join " " .chezmoidata.packages.dev }}')
   fi
 
-  if [ "$GUI" = "true" ]; then
+  if [ "${GUI}" = "1" ]; then
     sudo apt-get install -y --no-install-recommends \
       $(chezmoi execute-template '{{ join " " .chezmoidata.packages.gui }}')
   fi

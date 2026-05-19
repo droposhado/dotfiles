@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # tmux-nord-theme:
 curl -sSL https://github.com/nordtheme/tmux/archive/develop.tar.gz \

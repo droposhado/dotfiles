@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 xdg-mime default org.pwmt.zathura.desktop application/pdf
 
@@ -23,7 +23,7 @@ sudo systemctl start systemd-resolved
 systemctl --user daemon-reload
 
 if command -v apt-get >/dev/null; then
-  LOCALE_NEW=$(chezmoi execute-template '{{ join " " .chezmoidata.locale }}')
+  LOCALE_NEW=$(chezmoi execute-template '{{ .chezmoidata.locale }}')
 
   sudo locale-gen "$LOCALE_NEW.UTF-8"
   sudo dpkg-reconfigure -f noninteractive locales
