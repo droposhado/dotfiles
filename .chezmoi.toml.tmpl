@@ -8,9 +8,9 @@ hostnamme = "moon"
 locale = "en_US"
 timezone = "America/Sao_Paulo"
 
-amd = "{{ eq (env \"AMD\") \"1\" }}"
-dev = "{{ eq (env \"DEV\") \"1\" }}"
-gui = "{{ eq (env \"GUI\") \"1\" }}"
+amd = {{ eq (env "AMD") "1" }}
+dev = {{ eq (env "DEV") "1" }}
+gui = {{ eq (env "GUI") "1" }}
 
 [data.packages]
 base = [
