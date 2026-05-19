@@ -18,18 +18,18 @@ EOF
   sudo apt-get update
   sudo apt-get install -y "linux-headers-$(uname -r)" --no-install-recommends
 
-  sudo apt-get install -y --no-install-recommends {{ join " " .packages_base }}
+  sudo apt-get install -y --no-install-recommends {{ join " " .chezmoi.packages_base }}
 
   {{ if .amd }}
-    sudo apt-get install -y --no-install-recommends {{ join " " .packages_amd }}
+    sudo apt-get install -y --no-install-recommends {{ join " " .chezmoi.packages_amd }}
   {{ end }}
 
   {{ if .dev }}
-    sudo apt-get install -y --no-install-recommends {{ join " " .packages_dev }}
+    sudo apt-get install -y --no-install-recommends {{ join " " .chezmoi.packages_dev }}
   {{ end }}
 
   {{ if .gui }}
-    sudo apt-get install -y --no-install-recommends {{ join " " .packages_gui }}
+    sudo apt-get install -y --no-install-recommends {{ join " " .chezmoi.packages_gui }}
   {{ end }}
 
 {{ end }}
