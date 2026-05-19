@@ -1,29 +1,47 @@
 #!/bin/bash
 
-xdg-mime default org.pwmt.zathura.desktop application/pdf
-
-# https://stackoverflow.com/a/67185532
-xdg-mime default firefox-esr.desktop x-scheme-handler/https
-xdg-mime default firefox-esr.desktop x-scheme-handler/http
-
-# update font cache
-fc-cache -f -v
-
-cp "${PWD}/.config/mutt/muttrc.local.example" "${HOME}/.config/mutt/muttrc.local"
-
-sudo timedatectl set-timezone {{ .chezmoidata.timezone }}
-
-sudo systemctl enable systemd-resolved
-sudo systemctl start systemd-resolved
-
-#systemctl --user enable vdirsyncer.timer
-#systemctl --user start vdirsyncer.timer
-#systemctl --user enable offlineimap-oneshot.timer
-#systemctl --user start offlineimap-oneshot.timer
-systemctl --user daemon-reload
 
 {{ if or (eq .chezmoi.osRelease.id "debian") (has "debian" .chezmoi.osRelease.idLike) }}
-  sudo locale-gen "{{ .chezmoidata.locale }}.UTF-8"
-  sudo dpkg-reconfigure -f noninteractive locales
-  sudo update-locale LANG={{ .chezmoidata.locale }}.utf8
+  CODINAME=$(lsb_release -cs)
+
+  sudo cat <<-EOF > /etc/apt/sources.list
+deb http://deb.debian.org/debian/ ${CODINAME} main contrib non-free non-free-firmware
+deb-src http://deb.debian.org/debian/ ${CODINAME} main contrib non-free non-free-firmware
+
+deb http://deb.debian.org/debian/ ${CODINAME}-updates main contrib non-free non-free-firmware
+deb-src http://deb.debian.org/debian/ ${CODINAME}-updates main contrib non-free non-free-firmware
+
+deb http://security.debian.org/debian-security ${CODINAME}-security main contrib non-free non-free-firmware
+deb-src http://security.debian.org/debian-security ${CODINAME}-security main contrib non-free non-free-firmware
+EOF
+
+  sudo apt-get update
+  sudo apt-get install -y "linux-headers-$(uname -r)" --no-install-recommends
+
+  sudo apt-get install -y --no-install-recommends \
+  {{- range .chezmoidata.packages.base }}
+    {{ . }} \
+  {{- end }}
+
+  {{ if .amd }}
+    sudo apt-get install -y --no-install-recommends \
+    {{- range .chezmoidata.packages.amd }}
+      {{ . }} \
+    {{- end }}
+  {{ end }}
+
+  {{ if .dev }}
+    sudo apt-get install -y --no-install-recommends \
+    {{- range .chezmoidata.packages.dev }}
+      {{ . }} \
+    {{- end }}
+  {{ end }}
+
+  {{ if .gui }}
+    sudo apt-get install -y --no-install-recommends \
+    {{- range .chezmoidata.packages.gui }}
+      {{ . }} \
+    {{- end }}
+  {{ end }}
+
 {{ end }}
