@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-{{ if contains .chezmoi.osRelease.idLike "debian" }}
+{{ if or (eq .chezmoi.osRelease.id "debian") (has "debian" .chezmoi.osRelease.idLike) }}
   CODINAME=$(lsb_release -cs)
 
   sudo cat <<-EOF > /etc/apt/sources.list
