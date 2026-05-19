@@ -4,7 +4,7 @@ set -e
 if command -v apt-get >/dev/null; then
   CODINAME=$(lsb_release -cs)
 
-  sudo cat <<-EOF > /etc/apt/sources.list
+  echo "
 deb http://deb.debian.org/debian/ ${CODINAME} main contrib non-free non-free-firmware
 deb-src http://deb.debian.org/debian/ ${CODINAME} main contrib non-free non-free-firmware
 
@@ -12,8 +12,8 @@ deb http://deb.debian.org/debian/ ${CODINAME}-updates main contrib non-free non-
 deb-src http://deb.debian.org/debian/ ${CODINAME}-updates main contrib non-free non-free-firmware
 
 deb http://security.debian.org/debian-security ${CODINAME}-security main contrib non-free non-free-firmware
-deb-src http://security.debian.org/debian-security ${CODINAME}-security main contrib non-free non-free-firmware
-EOF
+deb-src http://security.debian.org/debian-security ${CODINAME}-security main contrib non-free non-free-firmware" | \
+  sudo tee /etc/apt/sources.list
 
   sudo apt-get update
   sudo apt-get install -y "linux-headers-$(uname -r)" --no-install-recommends
