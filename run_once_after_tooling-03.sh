@@ -7,7 +7,7 @@
 # [ -d "$HOME/.rustup" ] || curl https://sh.rustup.rs -sSf | sh -s -- -y
 
 
-{{ if or (eq .chezmoi.osRelease.id "debian") (has "debian" .chezmoi.osRelease.idLike) }}
+if command -v apt-get >/dev/null; then
   for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done
 
   sudo apt-get update
@@ -29,4 +29,4 @@
   sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
   sudo usermod -aG docker $USER
-{{ end  }}
+fi

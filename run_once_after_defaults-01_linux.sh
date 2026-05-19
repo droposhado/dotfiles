@@ -11,7 +11,7 @@ fc-cache -f -v
 
 cp "${PWD}/.config/mutt/muttrc.local.example" "${HOME}/.config/mutt/muttrc.local"
 
-sudo timedatectl set-timezone {{ .chezmoidata.timezone }}
+sudo timedatectl set-timezone $(chezmoi execute-template '{{ join " " .chezmoidata.timezone }}')
 
 sudo systemctl enable systemd-resolved
 sudo systemctl start systemd-resolved
@@ -22,8 +22,10 @@ sudo systemctl start systemd-resolved
 #systemctl --user start offlineimap-oneshot.timer
 systemctl --user daemon-reload
 
-{{ if or (eq .chezmoi.osRelease.id "debian") (has "debian" .chezmoi.osRelease.idLike) }}
-  sudo locale-gen "{{ .chezmoidata.locale }}.UTF-8"
+if command -v apt-get >/dev/null; then
+  LOCALE_NEW=$(chezmoi execute-template '{{ join " " .chezmoidata.locale }}')
+
+  sudo locale-gen "$LOCALE_NEW.UTF-8"
   sudo dpkg-reconfigure -f noninteractive locales
-  sudo update-locale LANG={{ .chezmoidata.locale }}.utf8
-{{ end }}
+  sudo update-locale LANG=$LOCALE_NEW.utf8
+fi

@@ -1,7 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -e
 
+AMD=$(chezmoi execute-template '{{ .chezmoidata.amd }}')
+DEV=$(chezmoi execute-template '{{ .chezmoidata.dev }}')
+GUI=$(chezmoi execute-template '{{ .chezmoidata.gui }}')
 
-{{ if or (eq .chezmoi.osRelease.id "debian") (has "debian" .chezmoi.osRelease.idLike) }}
+if command -v apt-get >/dev/null; then
   CODINAME=$(lsb_release -cs)
 
   sudo cat <<-EOF > /etc/apt/sources.list
@@ -19,29 +23,20 @@ EOF
   sudo apt-get install -y "linux-headers-$(uname -r)" --no-install-recommends
 
   sudo apt-get install -y --no-install-recommends \
-  {{- range .chezmoidata.packages.base }}
-    {{ . }} \
-  {{- end }}
+    $(chezmoi execute-template '{{ join " " .chezmoidata.packages.base }}')
 
-  {{ if .amd }}
+  if [ "$AMD" = "true" ]; then
     sudo apt-get install -y --no-install-recommends \
-    {{- range .chezmoidata.packages.amd }}
-      {{ . }} \
-    {{- end }}
-  {{ end }}
+      $(chezmoi execute-template '{{ join " " .chezmoidata.packages.amd }}')
+  fi
 
-  {{ if .dev }}
+  if [ "$DEV" = "true" ]; then
     sudo apt-get install -y --no-install-recommends \
-    {{- range .chezmoidata.packages.dev }}
-      {{ . }} \
-    {{- end }}
-  {{ end }}
+      $(chezmoi execute-template '{{ join " " .chezmoidata.packages.dev }}')
+  fi
 
-  {{ if .gui }}
+  if [ "$GUI" = "true" ]; then
     sudo apt-get install -y --no-install-recommends \
-    {{- range .chezmoidata.packages.gui }}
-      {{ . }} \
-    {{- end }}
-  {{ end }}
-
-{{ end }}
+      $(chezmoi execute-template '{{ join " " .chezmoidata.packages.gui }}')
+  fi
+fi
