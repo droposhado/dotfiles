@@ -39,7 +39,7 @@ EOF
 
   {{ if .gui }}
     sudo apt-get install -y --no-install-recommends \
-    {{- range .chezmoidata.packages_gui }}
+    {{- range .chezmoidata.packages.gui }}
       {{ . }} \
     {{- end }}
   {{ end }}
