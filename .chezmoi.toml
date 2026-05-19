@@ -12,8 +12,8 @@ amd = "{{ eq (env \"AMD\") \"1\" }}"
 dev = "{{ eq (env \"DEV\") \"1\" }}"
 gui = "{{ eq (env \"GUI\") \"1\" }}"
 
-
-packages_base = [
+[data.packages]
+base = [
   "vim",
   "starship",
 
@@ -27,7 +27,7 @@ packages_base = [
   "ntfs-3g"
 ]
 
-packages_amd = [
+amd = [
   # amd/ati graphics - https://wiki.debian.org/AtiHowTo
   "firmware-amd-graphics",
   "libgl1-mesa-dri",
@@ -36,7 +36,7 @@ packages_amd = [
   "xserver-xorg-video-all"
 ]
 
-packages_dev = [
+dev = [
   # basic
   "bison",
   "gdb",
@@ -64,7 +64,7 @@ packages_dev = [
   "libnotmuch-dev"
 ]
 
-packages_gui = [
+gui = [
   # i3
   "xorg",
   "i3-wm",

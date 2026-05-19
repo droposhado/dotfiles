@@ -18,18 +18,30 @@ EOF
   sudo apt-get update
   sudo apt-get install -y "linux-headers-$(uname -r)" --no-install-recommends
 
-  sudo apt-get install -y --no-install-recommends {{ join " " .chezmoidata.packages_base }}
+  sudo apt-get install -y --no-install-recommends \
+  {{- range .chezmoidata.packages.base }}
+    {{ . }} \
+  {{- end }}
 
   {{ if .amd }}
-    sudo apt-get install -y --no-install-recommends {{ join " " .chezmoidata.packages_amd }}
+    sudo apt-get install -y --no-install-recommends \
+    {{- range .chezmoidata.packages.amd }}
+      {{ . }} \
+    {{- end }}
   {{ end }}
 
   {{ if .dev }}
-    sudo apt-get install -y --no-install-recommends {{ join " " .chezmoidata.packages_dev }}
+    sudo apt-get install -y --no-install-recommends \
+    {{- range .chezmoidata.packages.dev }}
+      {{ . }} \
+    {{- end }}
   {{ end }}
 
   {{ if .gui }}
-    sudo apt-get install -y --no-install-recommends {{ join " " .chezmoidata.packages_gui }}
+    sudo apt-get install -y --no-install-recommends \
+    {{- range .chezmoidata.packages_gui }}
+      {{ . }} \
+    {{- end }}
   {{ end }}
 
 {{ end }}
