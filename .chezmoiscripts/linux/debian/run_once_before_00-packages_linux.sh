@@ -19,20 +19,20 @@ deb-src http://security.debian.org/debian-security ${CODINAME}-security main con
   sudo apt-get install -y "linux-headers-$(uname -r)" --no-install-recommends
 
   sudo apt-get install -y --no-install-recommends \
-    $(chezmoi execute-template '{{ join " " .chezmoidata.packages.base }}')
+    $(chezmoi execute-template '{{ join " " .chezmoidata.packages.debian.base }}')
 
   if [ "${AMD}" = "1" ]; then
     sudo apt-get install -y --no-install-recommends \
-      $(chezmoi execute-template '{{ join " " .chezmoidata.packages.amd }}')
+      $(chezmoi execute-template '{{ join " " .chezmoidata.packages.debian.amd }}')
   fi
 
   if [ "${DEV}" = "1" ]; then
     sudo apt-get install -y --no-install-recommends \
-      $(chezmoi execute-template '{{ join " " .chezmoidata.packages.dev }}')
+      $(chezmoi execute-template '{{ join " " .chezmoidata.packages.debian.dev }}')
   fi
 
   if [ "${GUI}" = "1" ]; then
     sudo apt-get install -y --no-install-recommends \
-      $(chezmoi execute-template '{{ join " " .chezmoidata.packages.gui }}')
+      $(chezmoi execute-template '{{ join " " .chezmoidata.packages.debian.gui }}')
   fi
 fi
