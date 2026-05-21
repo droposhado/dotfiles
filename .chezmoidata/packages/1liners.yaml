@@ -1,0 +1,18 @@
+---
+1liners:
+  - folder: .bun
+    cmd: curl -fsSL https://bun.sh/install | bash
+
+  - folder: .deno
+    cmd: curl -fsSL https://deno.land/install.sh | sh
+
+  - folder: .gvm
+    cmd: curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer | bash
+
+  - folder: .pyenv
+    cmd: curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+
+  - folder: .rustup
+    cmd: curl https://sh.rustup.rs -sSf | sh -s -- -y
+
+  - cmd: curl -fsSL https://get.docker.com/ | sudo sh

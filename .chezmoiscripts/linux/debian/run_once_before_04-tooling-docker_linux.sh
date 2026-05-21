@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 
-[ -d "$HOME/.bun" ] || curl -fsSL https://bun.sh/install | bash
-[ -d "$HOME/.deno" ] || curl -fsSL https://deno.land/install.sh | sh
-[ -d "$HOME/.gvm" ] || curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer | bash
-[ -d "$HOME/.pyenv" ] || curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-# [ -d "$HOME/.rustup" ] || curl https://sh.rustup.rs -sSf | sh -s -- -y
-
+set -e
 
 if command -v apt-get >/dev/null; then
   for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done

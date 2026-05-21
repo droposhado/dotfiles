@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 set -e
 
 if command -v apt-get >/dev/null; then
@@ -19,20 +20,28 @@ deb-src http://security.debian.org/debian-security ${CODINAME}-security main con
   sudo apt-get install -y "linux-headers-$(uname -r)" --no-install-recommends
 
   sudo apt-get install -y --no-install-recommends \
-    $(chezmoi execute-template '{{ join " " .chezmoidata.packages.debian.base }}')
+    {{ range .chezmoidata.packages.debian.base }}
+      {{ . }} \
+    {{ end }}
 
   if [ "${AMD}" = "1" ]; then
     sudo apt-get install -y --no-install-recommends \
-      $(chezmoi execute-template '{{ join " " .chezmoidata.packages.debian.amd }}')
+      {{ range .chezmoidata.packages.debian.amd }}
+        {{ . }} \
+      {{ end }}
   fi
 
   if [ "${DEV}" = "1" ]; then
     sudo apt-get install -y --no-install-recommends \
-      $(chezmoi execute-template '{{ join " " .chezmoidata.packages.debian.dev }}')
+      {{ range .chezmoidata.packages.debian.dev }}
+        {{ . }} \
+      {{ end }}
   fi
 
   if [ "${GUI}" = "1" ]; then
     sudo apt-get install -y --no-install-recommends \
-      $(chezmoi execute-template '{{ join " " .chezmoidata.packages.debian.gui }}')
+      {{ range .chezmoidata.packages.debian.gui }}
+        {{ . }} \
+      {{ end }}
   fi
 fi

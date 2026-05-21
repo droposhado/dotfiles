@@ -11,7 +11,7 @@ fc-cache -f -v
 
 cp "${PWD}/.config/mutt/muttrc.local.example" "${HOME}/.config/mutt/muttrc.local"
 
-sudo timedatectl set-timezone $(chezmoi execute-template '{{ join " " .chezmoidata.machine.timezone }}')
+sudo timedatectl set-timezone $(chezmoi execute-template '{{ .chezmoidata.machine.timezone }}')
 
 sudo systemctl enable systemd-resolved
 sudo systemctl start systemd-resolved
