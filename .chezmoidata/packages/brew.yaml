@@ -1,30 +1,31 @@
 ---
-brew:
-  taps:
-    - homebrew/cask
-    - homebrew/bundle
-    - homebrew/cask-drivers
+packages:
+  brew:
+    taps:
+      - homebrew/cask
+      - homebrew/bundle
+      - homebrew/cask-drivers
 
-  cask_args:
-    appdir: ~/Applications
-    require_sha: true
+    cask_args:
+      appdir: ~/Applications
+      require_sha: true
 
-  packages:
-    - fontconfig
-    - pyenv
-    - pyenv-virtualenv
-    - tmux
-    - vim
+    packages:
+      - fontconfig
+      - pyenv
+      - pyenv-virtualenv
+      - tmux
+      - vim
 
-  casks:
-    - alacritty
-    - dozer
-    - itsycal
-    - homebrew/cask-fonts/font-fira-code
-    - keepingyouawake
-    - monodraw
-    - meld
-    - obs
-    - rectangle
-    # - transmission
-    - vlc
+    casks:
+      - alacritty
+      - dozer
+      - itsycal
+      - homebrew/cask-fonts/font-fira-code
+      - keepingyouawake
+      - monodraw
+      - meld
+      - obs
+      - rectangle
+      # - transmission
+      - vlc

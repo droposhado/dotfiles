@@ -1,115 +1,116 @@
 ---
-debian:
-  base:
-    - vim
-    - starship
+packages:
+  debian:
+    base:
+      - vim
+      - starship
 
-    # network
-    - systemd-resolved
+      # network
+      - systemd-resolved
 
-    # file system
-    - cifs-utils
-    - exfat-fuse
-    - jmtpfs
-    - ntfs-3g
+      # file system
+      - cifs-utils
+      - exfat-fuse
+      - jmtpfs
+      - ntfs-3g
 
-  amd:
-    # amd/ati graphics - https://wiki.debian.org/AtiHowTo
-    - firmware-amd-graphics
-    - libgl1-mesa-dri
-    - libglx-mesa0
-    - mesa-vulkan-drivers
-    - xserver-xorg-video-all
+    amd:
+      # amd/ati graphics - https://wiki.debian.org/AtiHowTo
+      - firmware-amd-graphics
+      - libgl1-mesa-dri
+      - libglx-mesa0
+      - mesa-vulkan-drivers
+      - xserver-xorg-video-all
 
-  dev:
-    # basic
-    - bison
-    - gdb
-    - meld
-    - tmux
+    dev:
+      # basic
+      - bison
+      - gdb
+      - meld
+      - tmux
 
-    # pyenv - https://github.com/pyenv/pyenv/wiki#suggested-build-environment
-    - libssl-dev
-    - zlib1g-dev
-    - libbz2-dev
-    - libreadline-dev
-    - libsqlite3-dev
-    - libncursesw5-dev
-    - xz-utils
-    - tk-dev
-    - libxml2-dev
-    - libxmlsec1-dev
-    - libffi-dev
-    - liblzma-dev
+      # pyenv - https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - libncursesw5-dev
+      - xz-utils
+      - tk-dev
+      - libxml2-dev
+      - libxmlsec1-dev
+      - libffi-dev
+      - liblzma-dev
 
-    # i3status-rust
-    # libssl-dev # already exists in pyenv
-    - libsensors-dev
-    - libpulse-dev
-    - libnotmuch-dev
+      # i3status-rust
+      # libssl-dev # already exists in pyenv
+      - libsensors-dev
+      - libpulse-dev
+      - libnotmuch-dev
 
-  gui:
-    # i3
-    - xorg
-    - i3-wm
-    - i3lock
-    - suckless-tools
-    - dunst
+    gui:
+      # i3
+      - xorg
+      - i3-wm
+      - i3lock
+      - suckless-tools
+      - dunst
 
-    # font utils
-    - fontconfig
+      # font utils
+      - fontconfig
 
-    # fonts (terminal)
-    - fonts-firacode
+      # fonts (terminal)
+      - fonts-firacode
 
-    # fonts (japanese support)
-    - fonts-takao-mincho
-    - fonts-takao
+      # fonts (japanese support)
+      - fonts-takao-mincho
+      - fonts-takao
 
-    # https://en.wikipedia.org/wiki/Help:Multilingual_support_(East_Asian)
-    - fonts-arphic-ukai
-    - fonts-arphic-uming
-    - fonts-ipafont-mincho
-    - fonts-ipafont-gothic
-    - fonts-unfonts-core
+      # https://en.wikipedia.org/wiki/Help:Multilingual_support_(East_Asian)
+      - fonts-arphic-ukai
+      - fonts-arphic-uming
+      - fonts-ipafont-mincho
+      - fonts-ipafont-gothic
+      - fonts-unfonts-core
 
-    # i3 volume binds
-    - alsa-utils
-    - playerctl
+      # i3 volume binds
+      - alsa-utils
+      - playerctl
 
-    # dmenu opens
-    - xdg-utils
+      # dmenu opens
+      - xdg-utils
 
-    # screenshot
-    - xdotool
-    - maim
+      # screenshot
+      - xdotool
+      - maim
 
-    # volume control
-    - pulseaudio
-    - pavucontrol
+      # volume control
+      - pulseaudio
+      - pavucontrol
 
-    # software packages
-    - alacritty
-    - firefox-esr
-    - rxvt-unicode
-    - mlocate
-    - transmission
-    - mpv
-    - rofi
-    - zathura
-    - xclip
+      # software packages
+      - alacritty
+      - firefox-esr
+      - rxvt-unicode
+      - mlocate
+      - transmission
+      - mpv
+      - rofi
+      - zathura
+      - xclip
 
-    # backup
-    - borgbackup
-    - vorta
+      # backup
+      - borgbackup
+      - vorta
 
-    # mail
-    - offlineimap3
-    - imapfilter
+      # mail
+      - offlineimap3
+      - imapfilter
 
-    # (card, cal) * DAV
-    - vdirsyncer
+      # (card, cal) * DAV
+      - vdirsyncer
 
-    # horizonte
-    - python3-alsaaudio
-    - python3-psutil
+      # horizonte
+      - python3-alsaaudio
+      - python3-psutil
