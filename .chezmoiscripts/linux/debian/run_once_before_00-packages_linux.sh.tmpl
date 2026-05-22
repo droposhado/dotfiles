@@ -7,18 +7,18 @@ if command -v apt-get >/dev/null; then
   sudo apt-get update
   sudo apt-get install -y "linux-headers-$(uname -r)" --no-install-recommends
 
-  sudo apt-get install -y --no-install-recommends {{ join "" .packages.debian.base }}
+  sudo apt-get install -y --no-install-recommends {{ join " " .packages.debian.base }}
 
 
   if [ "${AMD}" = "1" ]; then
-    sudo apt-get install -y --no-install-recommends {{ join "" .packages.debian.amd }}
+    sudo apt-get install -y --no-install-recommends {{ join " " .packages.debian.amd }}
   fi
 
   if [ "${DEV}" = "1" ]; then
-    sudo apt-get install -y --no-install-recommends {{ join "" .packages.debian.dev }}
+    sudo apt-get install -y --no-install-recommends {{ join " " .packages.debian.dev }}
   fi
 
   if [ "${GUI}" = "1" ]; then
-    sudo apt-get install -y --no-install-recommends {{ join "" .packages.debian.gui }}
+    sudo apt-get install -y --no-install-recommends {{ join " " .packages.debian.gui }}
   fi
 fi
