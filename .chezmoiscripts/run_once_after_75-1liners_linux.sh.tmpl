@@ -3,5 +3,5 @@
 set -e
 
 {{ range .oneLiners }}
-  {{ if .folder }}[ -d "{{ .chezmoi.homeDir }}/{{ .folder }}" ] || {{ end }}{{ .cmd }}
+  {{ if .folder }}[ -d "$HOME/{{ .folder }}" ] || {{ end }}{{ .cmd }}
 {{ end }}

@@ -9,17 +9,17 @@ brew update
 brew bundle --verbose --file=/dev/stdin <<EOF
 
 {{ range .packages.brew.taps }}
-tap {{ . }} \
+tap {{ . }}
 {{ end }}
 
 cask_args appdir: "{{ .packages.brew.appdir }}", require_sha: {{ .packages.brew.require_sha }}
 
 {{ range .packages.brew.packages }}
-brew {{ . }} \
+brew {{ . }}
 {{ end }}
 
 {{ range .packages.brew.casks }}
-cask {{ . }} \
+cask {{ . }}
 {{ end }}
 EOF
 
