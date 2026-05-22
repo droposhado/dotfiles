@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 xdg-mime default org.pwmt.zathura.desktop application/pdf
 
 # https://stackoverflow.com/a/67185532
@@ -11,7 +13,7 @@ fc-cache -f -v
 
 cp "${PWD}/.config/mutt/muttrc.local.example" "${HOME}/.config/mutt/muttrc.local"
 
-sudo timedatectl set-timezone $(chezmoi execute-template '{{ .chezmoidata.machine.timezone }}')
+sudo timedatectl set-timezone {{ .chezmoidata.machine.timezone }}
 
 sudo systemctl enable systemd-resolved
 sudo systemctl start systemd-resolved
@@ -23,7 +25,7 @@ sudo systemctl start systemd-resolved
 systemctl --user daemon-reload
 
 if command -v apt-get >/dev/null; then
-  LOCALE_NEW=$(chezmoi execute-template '{{ .chezmoidata.machine.locale }}')
+  LOCALE_NEW={{ .chezmoidata.machine.locale }}
 
   sudo locale-gen "$LOCALE_NEW.UTF-8"
   sudo dpkg-reconfigure -f noninteractive locales
