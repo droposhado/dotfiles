@@ -2,10 +2,22 @@
 
 set -e
 
+# detect WSL and skip install kernel headers
+# to use VMs
+is_wsl() {
+    [ -n "$WSL_DISTRO_NAME" ] && return 0
+    grep -qi "microsoft" /proc/version 2>/dev/null && return 0
+    grep -qi "microsoft" /proc/sys/kernel/osrelease 2>/dev/null && return 0
+    return 1
+}
+
 if command -v apt-get >/dev/null; then
 
   sudo apt-get update
-  sudo apt-get install -y "linux-headers-$(uname -r)" --no-install-recommends
+
+  if is_wsl; then
+    sudo apt-get install -y "linux-headers-$(uname -r)" --no-install-recommends
+  fi
 
   sudo apt-get install -y --no-install-recommends {{ join " " .packages.debian.base }}
 

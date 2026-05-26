@@ -2,7 +2,7 @@
 packages:
   debian:
     base:
-      - vim
+      - neovim
       - starship
 
       # network

@@ -6,11 +6,6 @@ curl -sSL https://github.com/nordtheme/tmux/archive/develop.tar.gz \
 tar -xzvf "${PWD}/nord-tmux.tar.gz" -C "${PWD}/.config/tmux/themes/nord-tmux" --strip-components=1
 rm -rf nord-tmux.tar.gz
 
-# vim-plug:
-rm -rf "${PWD}/.vim/autoload/plug.vim"
-curl -fLo "${PWD}/.vim/autoload/plug.vim" --create-dirs \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 # zathura-nord-theme:
 rm -rf "${PWD}/.config/zathura/base16-nord.config"
 curl -sSL https://raw.githubusercontent.com/HaoZeke/base16-zathura/refs/heads/main/build_schemes/recolors/base16-nord.config \

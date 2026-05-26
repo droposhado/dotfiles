@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e
+
+sudo cp {{ .chezmoi.homeDir }}/etc/X11/xorg.conf.d/20-lg-monitor-23mp55.conf /etc/X11/xorg.conf.d
+
+sudo cp {{ .chezmoi.homeDir }}/etc/systemd/resolved.conf.d/*.conf /etc/systemd/resolved.conf.d/
+sudo cp {{ .chezmoi.homeDir }}/etc/systemd/timesyncd.conf.d/*.conf /etc/systemd/timesyncd.conf.d/
+
+sudo systemctl enable systemd-resolved
+sudo systemctl start systemd-resolved
+
+if command -v apt-get >/dev/null; then
+  LOCALE_NEW={{ .machine.locale }}
+
+  sudo locale-gen "$LOCALE_NEW.UTF-8"
+  sudo dpkg-reconfigure -f noninteractive locales
+  sudo update-locale LANG=$LOCALE_NEW.utf8
+fi

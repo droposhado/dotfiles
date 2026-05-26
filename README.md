@@ -47,15 +47,6 @@ Logout and login again (for sudo effect), now:
 $ sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply <github-user>
 ```
 
-## Linters file
-
-This repository store scripts for many languages, the files below show which language and which project it configures. Remembering that they are not necessary for dotfiles, they are only to help with script tests:
-
-- **.bandit**: for Python to use with [bandit](https://github.com/PyCQA/bandit);
-- **.flake8**: for Python to use with [flake8](https://flake8.pycqa.org/en/latest/);
-- **.isort.cfg**: for Python to use with [isort](https://pycqa.github.io/isort/);
-- **.pylintrc**: for Python to use with [pylint](https://github.com/PyCQA/pylint).
-
 ## Inspired by
 
 - [mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles)
