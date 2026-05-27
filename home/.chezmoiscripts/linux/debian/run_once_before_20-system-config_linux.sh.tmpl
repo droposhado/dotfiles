@@ -11,6 +11,10 @@ if [ ! -d "/etc/systemd/resolved.conf.d" ]; then
     sudo mkdir -p "/etc/systemd/resolved.conf.d"
 fi
 sudo cp {{ .chezmoi.sourceDir }}/etc/systemd/resolved.conf.d/*.conf /etc/systemd/resolved.conf.d/
+
+if [ ! -d "/etc/systemd/timesyncd.conf.d/" ]; then
+    sudo mkdir -p "/etc/systemd/timesyncd.conf.d/"
+fi
 sudo cp {{ .chezmoi.sourceDir }}/etc/systemd/timesyncd.conf.d/*.conf /etc/systemd/timesyncd.conf.d/
 
 sudo systemctl enable systemd-resolved
