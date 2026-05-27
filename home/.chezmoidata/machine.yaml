@@ -1,5 +1,5 @@
 ---
-machines:
+machine:
   hostname: moon
   locale: en_US
   timezone: America/Sao_Paulo
