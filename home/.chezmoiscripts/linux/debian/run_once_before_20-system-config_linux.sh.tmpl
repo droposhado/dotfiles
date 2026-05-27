@@ -2,8 +2,14 @@
 
 set -e
 
+if [ ! -d "/etc/X11/xorg.conf.d" ]; then
+    sudo mkdir -p "/etc/X11/xorg.conf.d"
+fi
 sudo cp {{ .chezmoi.sourceDir }}/etc/X11/xorg.conf.d/20-lg-monitor-23mp55.conf /etc/X11/xorg.conf.d
 
+if [ ! -d "/etc/systemd/resolved.conf.d" ]; then
+    sudo mkdir -p "/etc/systemd/resolved.conf.d"
+fi
 sudo cp {{ .chezmoi.sourceDir }}/etc/systemd/resolved.conf.d/*.conf /etc/systemd/resolved.conf.d/
 sudo cp {{ .chezmoi.sourceDir }}/etc/systemd/timesyncd.conf.d/*.conf /etc/systemd/timesyncd.conf.d/
 
