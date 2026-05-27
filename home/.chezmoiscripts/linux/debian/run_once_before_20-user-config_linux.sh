@@ -11,7 +11,7 @@ xdg-mime default firefox-esr.desktop x-scheme-handler/http
 # update font cache
 fc-cache -f -v
 
-cp "${PWD}/.config/mutt/muttrc.local.example" "${HOME}/.config/mutt/muttrc.local"
+# cp "${PWD}/.config/mutt/muttrc.local.example" "${HOME}/.config/mutt/muttrc.local"
 
 #systemctl --user enable vdirsyncer.timer
 #systemctl --user start vdirsyncer.timer
