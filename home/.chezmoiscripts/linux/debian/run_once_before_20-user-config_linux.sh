@@ -2,14 +2,16 @@
 
 set -e
 
-xdg-mime default org.pwmt.zathura.desktop application/pdf
+if [ "${GUI}" = "1" ]; then
+  xdg-mime default org.pwmt.zathura.desktop application/pdf
 
-# https://stackoverflow.com/a/67185532
-xdg-mime default firefox-esr.desktop x-scheme-handler/https
-xdg-mime default firefox-esr.desktop x-scheme-handler/http
+  # https://stackoverflow.com/a/67185532
+  xdg-mime default firefox-esr.desktop x-scheme-handler/https
+  xdg-mime default firefox-esr.desktop x-scheme-handler/http
 
-# update font cache
-fc-cache -f -v
+  # update font cache
+  fc-cache -f -v
+fi
 
 # cp "${PWD}/.config/mutt/muttrc.local.example" "${HOME}/.config/mutt/muttrc.local"
 
