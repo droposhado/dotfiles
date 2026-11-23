@@ -1,7 +1,8 @@
 README.md
 LICENSE
 *.md
-etc/*
+etc
+etc/**
 scripts*
 .github/*
 .bandit
@@ -13,3 +14,51 @@ _*
 archinstall.json
 tests.sh
 
+{{- if not .gui }}
+# GUI: window manager and status bar
+.config/i3
+.config/i3/**
+.config/i3status-rust
+.config/i3status-rust/**
+
+# GUI: notifications
+.config/dunst
+.config/dunst/**
+
+# GUI: launcher
+.config/rofi
+.config/rofi/**
+
+# GUI: terminal emulator
+.config/alacritty
+.config/alacritty/**
+
+# GUI: document viewer
+.config/zathura
+.config/zathura/**
+
+# GUI: media player
+.config/mpv
+.config/mpv/**
+
+# GUI: editors & theme configs
+.config/sublime-text
+.config/sublime-text/**
+.config/xresources
+.config/xresources/**
+
+# GUI: X11
+.xinitrc
+.Xresources
+
+# GUI: fonts
+.fonts
+.fonts/**
+
+# GUI: scripts that require graphical session
+.local/bin/lock
+.local/bin/logout
+.local/bin/play-pause
+.local/bin/nw
+.local/bin/horizonte
+{{- end }}

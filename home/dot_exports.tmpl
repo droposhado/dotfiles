@@ -1,6 +1,7 @@
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+{{- if eq .chezmoi.os "darwin" }}
 # Hide the “default interactive shell is now zsh” warning on macOS.
 export BASH_SILENCE_DEPRECATION_WARNING=1;
 
@@ -8,7 +9,15 @@ export BASH_SILENCE_DEPRECATION_WARNING=1;
 # https://itectec.com/unixlinux/bash-clicolor-and-ls_colors-in-bash/
 export CLICOLOR=1
 
-export EDITOR=vim
+# macOS only
+# https://github.com/Homebrew/brew/blob/master/docs/Analytics.md
+export HOMEBREW_NO_ANALYTICS=1
+
+# Specify your defaults in this environment variable
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+{{- end }}
+
+export EDITOR=nvim
 
 GPG_TTY=$(tty)
 export GPG_TTY
@@ -25,13 +34,6 @@ export HISTFILESIZE=100000
 
 # Dont save commands with this patterns
 export HISTIGNORE=" *:cd*:history*:l*"
-
-# macOS only
-# https://github.com/Homebrew/brew/blob/master/docs/Analytics.md
-export HOMEBREW_NO_ANALYTICS=1
-
-# Specify your defaults in this environment variable
-export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1

@@ -3,7 +3,10 @@
 set -e
 
 {{ range .oneLiners }}
-  {{ $folder := .folder }}
-  {{ $cmd := .cmd }}
+  {{- $folder := "" -}}
+  {{- if hasKey . "folder" -}}
+    {{- $folder = .folder -}}
+  {{- end -}}
+  {{- $cmd := .cmd }}
   {{ if $folder }}[ -d "$HOME/{{ $folder }}" ] || {{ end }}{{ $cmd }}
 {{ end }}

@@ -5,14 +5,25 @@ packages:
       - neovim
       - starship
 
-      # network
-      - systemd-resolved
+      # backup
+      - borgbackup
+
+      # mail
+      - offlineimap3
+      - imapfilter
+
+      # (card, cal) * DAV
+      - vdirsyncer
 
       # file system
       - cifs-utils
       - exfat-fuse
       - jmtpfs
       - ntfs-3g
+
+    network:
+      # network (bare-metal / VPS only, not installed on WSL)
+      - systemd-resolved
 
     amd:
       # amd/ati graphics - https://wiki.debian.org/AtiHowTo
@@ -26,7 +37,6 @@ packages:
       # basic
       - bison
       - gdb
-      - meld
       - tmux
 
       # pyenv - https://github.com/pyenv/pyenv/wiki#suggested-build-environment
@@ -100,16 +110,11 @@ packages:
       - zathura
       - xclip
 
-      # backup
-      - borgbackup
+      # diff GUI tool
+      - meld
+
+      # backup (GUI)
       - vorta
-
-      # mail
-      - offlineimap3
-      - imapfilter
-
-      # (card, cal) * DAV
-      - vdirsyncer
 
       # horizonte
       - python3-alsaaudio

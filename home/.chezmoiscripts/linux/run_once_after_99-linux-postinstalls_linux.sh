@@ -2,5 +2,5 @@
 
 set -e
 
-sudo groupadd docker
+getent group docker >/dev/null || sudo groupadd docker
 sudo usermod -aG docker $USER

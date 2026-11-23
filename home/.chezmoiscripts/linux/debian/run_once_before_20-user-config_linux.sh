@@ -19,4 +19,6 @@ fi
 #systemctl --user start vdirsyncer.timer
 #systemctl --user enable offlineimap-oneshot.timer
 #systemctl --user start offlineimap-oneshot.timer
-systemctl --user daemon-reload
+if command -v systemctl >/dev/null && [ -d /run/systemd/system ]; then
+  systemctl --user daemon-reload
+fi

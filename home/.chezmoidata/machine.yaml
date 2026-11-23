@@ -1,4 +1,5 @@
 ---
+gui: false
 machine:
   hostname: moon
   locale: en_US

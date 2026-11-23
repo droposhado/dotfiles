@@ -12,7 +12,7 @@ brew bundle --verbose --file=/dev/stdin <<EOF
 tap {{ . }}
 {{ end }}
 
-cask_args appdir: "{{ .packages.brew.appdir }}", require_sha: {{ .packages.brew.require_sha }}
+cask_args appdir: "{{ .packages.brew.cask_args.appdir }}", require_sha: {{ .packages.brew.cask_args.require_sha }}
 
 {{ range .packages.brew.packages }}
 brew {{ . }}

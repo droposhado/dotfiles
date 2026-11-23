@@ -1,0 +1,319 @@
+# borgmatic configuration
+# Convertido do perfil Vorta "Default"
+# Data de conversão: 2026-07-08
+#
+# ANTES DE USAR:
+#   1. Preencha a senha/passphrase do repositório (veja seção "storage")
+#   2. Certifique-se que a chave SSH está configurada (~/.ssh/config ou ssh-agent)
+#   3. Instale borgmatic: pip install borgmatic
+#   4. Valide este arquivo: borgmatic config validate --config borgmatic.yaml
+#   5. Configure agendamento via cron ou systemd (veja comentários no final)
+
+repositories:
+  - path: ${BORG_REPO_SSH}
+    label: borgbase
+
+source_directories:
+  - ${HOME}/projects
+  - ${HOME}/docs
+
+# ------------------------------------------------------------
+# Armazenamento
+# ------------------------------------------------------------
+
+# Escolha UMA das opções abaixo para a senha do repositório:
+#
+# Opção A — senha em texto plano (menos seguro):
+# encryption_passphrase: "sua-senha-aqui"
+#
+# Opção B — senha via comando (recomendado, ex: secret-tool, pass, etc.):
+# encryption_passcommand: secret-tool lookup borg-backup borgbase
+#
+# Opção C — senha via variável de ambiente:
+# (exporte BORG_PASSPHRASE=... antes de rodar borgmatic)
+
+compression: lz4
+
+archive_name_format: "{hostname}-{now:%Y-%m-%d-%H%M%S}"
+#match_archives: "sh:machine-*"
+
+# ------------------------------------------------------------
+# Exclusões
+# Convertidas dos exclude_patterns do Vorta
+# ------------------------------------------------------------
+
+exclude_patterns:
+  # Binários e bibliotecas compiladas
+  - "*/*.exe"
+  - "*/*.exe~"
+  - "*/*.dll"
+  - "*/*.so"
+  - "*/*.dylib"
+  - "*/*.test"
+  - "*/*.out"
+  - "*/go.work"
+
+  # Arquivos temporários e de sistema
+  - "*/*~"
+  - "*/.fuse_hidden*"
+  - "*/.directory"
+  - "*/.Trash-*"
+  - "*/.nfs*"
+
+  # Logs
+  - "*/logs"
+  - "*/*.log"
+  - "*/npm-debug.log*"
+  - "*/yarn-debug.log*"
+  - "*/yarn-error.log*"
+  - "*/lerna-debug.log*"
+  - "*/.pnpm-debug.log*"
+  - "*/report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json"
+
+  # Node.js / JavaScript / TypeScript
+  - "*/pids"
+  - "*/*.pid"
+  - "*/*.seed"
+  - "*/*.pid.lock"
+  - "*/lib-cov"
+  - "*/coverage"
+  - "*/*.lcov"
+  - "*/.nyc_output"
+  - "*/.grunt"
+  - "*/bower_components"
+  - "*/.lock-wscript"
+  - "*/build/Release"
+  - "*/node_modules/*"
+  - "*/jspm_packages/*"
+  - "*/web_modules/*"
+  - "*/*.tsbuildinfo"
+  - "*/.npm"
+  - "*/.eslintcache"
+  - "*/.stylelintcache"
+  - "*/.rpt2_cache/*"
+  - "*/.rts2_cache_cjs/*"
+  - "*/.rts2_cache_es/*"
+  - "*/.rts2_cache_umd/*"
+  - "*/.node_repl_history"
+  - "*/*.tgz"
+  - "*/.yarn-integrity"
+
+  # Variáveis de ambiente e cache de frameworks
+  - "*/.env"
+  - "*/.env.development.local"
+  - "*/.env.test.local"
+  - "*/.env.production.local"
+  - "*/.env.local"
+  - "*/.cache"
+  - "*/.parcel-cache"
+  - "*/.next"
+  - "*/out"
+  - "*/.nuxt"
+  - "*/dist"
+  - "*/.cache/*"
+  - "*/.vuepress/dist"
+  - "*/.temp"
+  - "*/.docusaurus"
+  - "*/.serverless/*"
+  - "*/.fusebox/*"
+  - "*/.dynamodb/*"
+  - "*/.tern-port"
+  - "*/.vscode-test"
+  - "*/.yarn/cache"
+  - "*/.yarn/unplugged"
+  - "*/.yarn/build-state.yml"
+  - "*/.yarn/install-state.gz"
+  - "*/.pnp.*"
+  - "*/.webpack/*"
+  - "*/.svelte-kit"
+
+  # Python
+  - "*/__pycache__/"
+  - "*/*.py[cod]"
+  - "*/*$py.class"
+  - "*/.Python"
+  - "*/build/*"
+  - "*/develop-eggs/*"
+  - "*/dist/*"
+  - "*/downloads/*"
+  - "*/eggs/*"
+  - "*/.eggs/*"
+  - "*/lib/*"
+  - "*/lib64/*"
+  - "*/parts/*"
+  - "*/sdist/*"
+  - "*/var/*"
+  - "*/wheels/*"
+  - "*/share/python-wheels/*"
+  - "*/*.egg-info/*"
+  - "*/.installed.cfg"
+  - "*/*.egg"
+  - "*/MANIFEST"
+  - "*/*.manifest"
+  - "*/*.spec"
+  - "*/pip-log.txt"
+  - "*/pip-delete-this-directory.txt"
+  - "*/htmlcov/*"
+  - "*/.tox/*"
+  - "*/.nox/*"
+  - "*/.coverage"
+  - "*/.coverage.*"
+  - "*/nosetests.xml"
+  - "*/coverage.xml"
+  - "*/*.cover"
+  - "*/*.py,cover"
+  - "*/.hypothesis/*"
+  - "*/.pytest_cache/*"
+  - "*/cover/*"
+  - "*/*.mo"
+  - "*/*.pot"
+  - "*/local_settings.py"
+  - "*/db.sqlite3"
+  - "*/db.sqlite3-journal"
+  - "*/instance/*"
+  - "*/.webassets-cache"
+  - "*/.scrapy"
+  - "*/docs/_build/*"
+  - "*/.pybuilder/*"
+  - "*/target/*"
+  - "*/.ipynb_checkpoints"
+  - "*/profile_default/*"
+  - "*/ipython_config.py"
+  - "*/.pdm.toml"
+  - "*/__pypackages__/*"
+  - "*/celerybeat-schedule"
+  - "*/celerybeat.pid"
+  - "*/*.sage.py"
+  - "*/.venv"
+  - "*/env/*"
+  - "*/venv/*"
+  - "*/ENV/*"
+  - "*/env.bak/*"
+  - "*/venv.bak/*"
+  - "*/.spyderproject"
+  - "*/.spyproject"
+  - "*/.ropeproject"
+  - "*/site"
+  - "*/.mypy_cache/*"
+  - "*/.dmypy.json"
+  - "*/dmypy.json"
+  - "*/.pyre/*"
+  - "*/.pytype/*"
+  - "*/cython_debug/*"
+  - "*/poetry.toml"
+  - "*/.ruff_cache/*"
+  - "*/pyrightconfig.json"
+  - "*/debug/*"
+
+  # Rust
+  - "*/Cargo.lock"
+  - "*/**/*.rs.bk"
+  - "*/*.pdb"
+
+  # Terraform
+  - "*/**/.terraform/*"
+  - "*/*.tfstate"
+  - "*/*.tfstate.*"
+  - "*/crash.log"
+  - "*/crash.*.log"
+  - "*/*.tfvars"
+  - "*/*.tfvars.json"
+  - "*/override.tf"
+  - "*/override.tf.json"
+  - "*/*_override.tf"
+  - "*/*_override.tf.json"
+  - "*/.terraformrc"
+  - "*/terraform.rc"
+
+  # Chaves privadas, certificados e credenciais
+  - "*/*.pem"
+  - "*/*.key"
+  - "*/*.pkcs12"
+  - "*/*.p12"
+  - "*/*.pfx"
+  - "*/*id_rsa*"
+  - "*/*id_ed25519*"
+  - "*/*id_ecdsa*"
+  - "*/*id_dsa*"
+
+# ------------------------------------------------------------
+# Retenção / Pruning
+# No Vorta estava DESATIVADO (prune_on: false).
+# Descomente abaixo para ativar.
+# ------------------------------------------------------------
+
+# keep_within: 10H   # manter todos os backups das últimas 10 horas
+# keep_daily: 7
+# keep_weekly: 4
+# keep_monthly: 6
+# keep_yearly: 2
+# prefix: "{hostname}-"
+
+# ------------------------------------------------------------
+# Verificações de consistência
+# Vorta: validation_on=true, validation_weeks=3
+# ------------------------------------------------------------
+
+checks:
+  - name: repository
+    frequency: 3 weeks
+  - name: archives
+    frequency: 3 weeks
+
+# ------------------------------------------------------------
+# Hooks (equivalente aos pre/post backup commands do Vorta)
+# Descomente e preencha se necessário:
+# ------------------------------------------------------------
+
+# hooks:
+#   before_backup:
+#     - echo "Iniciando backup..."
+#   after_backup:
+#     - echo "Backup concluído."
+#   on_error:
+#     - echo "Erro no backup!"
+
+pushover:
+    token: ${PUSHOVER_TOKEN}
+    user: ${PUSHOVER_USER}
+
+    start:
+        title: Backup iniciado
+        message: O borgmatic começou o backup
+        priority: -1
+        sound: pushover
+
+    finish:
+        title: Backup concluído
+        message: Backup finalizado com sucesso
+        priority: 0
+        sound: magic
+
+    fail:
+        title: Backup FALHOU
+        message: Verifique os logs do borgmatic
+        priority: 2
+        expire: 600
+        retry: 30
+        sound: siren
+
+    states:
+        - start
+        - finish
+        - fail
+
+# ------------------------------------------------------------
+# AGENDAMENTO
+#
+# O borgmatic não gerencia o agendamento — use cron ou systemd.
+#
+# Vorta estava configurado para: a cada 1 hora
+#
+# Opção A — cron (edite com: crontab -e):
+#   0 * * * * borgmatic --config /caminho/para/borgmatic.yaml
+#
+# Opção B — systemd timer (recomendado no Linux):
+#   borgmatic também instala units prontas:
+#   sudo systemctl enable --now borgmatic.timer
+#   (ajuste o timer em /etc/systemd/system/borgmatic.timer)
+# ------------------------------------------------------------

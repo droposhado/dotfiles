@@ -56,10 +56,12 @@
     gpgsign = true
 
 [core]
-    editor = vim
+    editor = nvim
+{{- if .gui }}
 
 [diff]
     guitool = meld
+{{- end }}
 
 [gpg]
     program = gpg
@@ -67,6 +69,8 @@
 [init]
     defaultBranch = main
     templateDir = ~/.config/git/templates
+{{- if .gui }}
 
 [merge]
     tool = meld
+{{- end }}

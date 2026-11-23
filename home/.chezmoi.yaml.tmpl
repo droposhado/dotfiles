@@ -1,0 +1,32 @@
+{{- $gui := false -}}
+{{- if env "GUI" -}}
+{{-   $gui = or (eq (env "GUI") "1") (eq (env "GUI") "true") -}}
+{{- else if hasKey . "gui" -}}
+{{-   $gui = .gui -}}
+{{- else if stdinIsATTY -}}
+{{-   $gui = promptBool "Install GUI components (i3, alacritty, fonts, etc.)" false -}}
+{{- end -}}
+
+{{- $dev := true -}}
+{{- if env "DEV" -}}
+{{-   $dev = or (eq (env "DEV") "1") (eq (env "DEV") "true") -}}
+{{- else if hasKey . "dev" -}}
+{{-   $dev = .dev -}}
+{{- end -}}
+
+{{- $amd := false -}}
+{{- if env "AMD" -}}
+{{-   $amd = or (eq (env "AMD") "1") (eq (env "AMD") "true") -}}
+{{- else if hasKey . "amd" -}}
+{{-   $amd = .amd -}}
+{{- end -}}
+
+data:
+  gui: {{ $gui }}
+  dev: {{ $dev }}
+  amd: {{ $amd }}
+
+scriptEnv:
+  GUI: "{{ if $gui }}1{{ else }}0{{ end }}"
+  DEV: "{{ if $dev }}1{{ else }}0{{ end }}"
+  AMD: "{{ if $amd }}1{{ else }}0{{ end }}"

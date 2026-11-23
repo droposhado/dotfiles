@@ -2,23 +2,44 @@
 
 set -e
 
-if [ ! -d "/etc/X11/xorg.conf.d" ]; then
-    sudo mkdir -p "/etc/X11/xorg.conf.d"
-fi
-sudo cp {{ .chezmoi.sourceDir }}/etc/X11/xorg.conf.d/20-lg-monitor-23mp55.conf /etc/X11/xorg.conf.d
+is_wsl() {
+    [ -n "$WSL_DISTRO_NAME" ] && return 0
+    grep -qi "microsoft" /proc/version 2>/dev/null && return 0
+    grep -qi "microsoft" /proc/sys/kernel/osrelease 2>/dev/null && return 0
+    return 1
+}
 
-if [ ! -d "/etc/systemd/resolved.conf.d" ]; then
-    sudo mkdir -p "/etc/systemd/resolved.conf.d"
+# Only configure X11 monitor settings if GUI is enabled
+if [ "${GUI}" = "1" ]; then
+  if [ -f "{{ .chezmoi.sourceDir }}/etc/X11/xorg.conf.d/20-lg-monitor-23mp55.conf" ]; then
+    if [ ! -d "/etc/X11/xorg.conf.d" ]; then
+      sudo mkdir -p "/etc/X11/xorg.conf.d"
+    fi
+    sudo cp {{ .chezmoi.sourceDir }}/etc/X11/xorg.conf.d/20-lg-monitor-23mp55.conf /etc/X11/xorg.conf.d/
+  fi
 fi
-sudo cp {{ .chezmoi.sourceDir }}/etc/systemd/resolved.conf.d/*.conf /etc/systemd/resolved.conf.d/
 
-if [ ! -d "/etc/systemd/timesyncd.conf.d/" ]; then
-    sudo mkdir -p "/etc/systemd/timesyncd.conf.d/"
+# Configure systemd-resolved and timesyncd on bare-metal/VPS (skip on WSL)
+if ! is_wsl; then
+  if [ -d "{{ .chezmoi.sourceDir }}/etc/systemd/resolved.conf.d" ]; then
+    if [ ! -d "/etc/systemd/resolved.conf.d" ]; then
+      sudo mkdir -p "/etc/systemd/resolved.conf.d"
+    fi
+    sudo cp {{ .chezmoi.sourceDir }}/etc/systemd/resolved.conf.d/*.conf /etc/systemd/resolved.conf.d/
+  fi
+
+  if [ -d "{{ .chezmoi.sourceDir }}/etc/systemd/timesyncd.conf.d" ]; then
+    if [ ! -d "/etc/systemd/timesyncd.conf.d/" ]; then
+      sudo mkdir -p "/etc/systemd/timesyncd.conf.d/"
+    fi
+    sudo cp {{ .chezmoi.sourceDir }}/etc/systemd/timesyncd.conf.d/*.conf /etc/systemd/timesyncd.conf.d/
+  fi
+
+  if command -v systemctl >/dev/null && [ -d /run/systemd/system ]; then
+    sudo systemctl enable systemd-resolved || true
+    sudo systemctl start systemd-resolved || true
+  fi
 fi
-sudo cp {{ .chezmoi.sourceDir }}/etc/systemd/timesyncd.conf.d/*.conf /etc/systemd/timesyncd.conf.d/
-
-sudo systemctl enable systemd-resolved
-sudo systemctl start systemd-resolved
 
 if command -v apt-get >/dev/null; then
   LOCALE_NEW={{ .machine.locale }}

@@ -21,6 +21,10 @@ if command -v apt-get >/dev/null; then
 
   sudo apt-get install -y --no-install-recommends {{ join " " .packages.debian.base }}
 
+  # wsl manage networks
+  if ! is_wsl; then
+    sudo apt-get install -y --no-install-recommends {{ join " " .packages.debian.network }}
+  fi
 
   if [ "${AMD}" = "1" ]; then
     sudo apt-get install -y --no-install-recommends {{ join " " .packages.debian.amd }}

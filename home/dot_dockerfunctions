@@ -19,14 +19,6 @@ gitleaks(){
     zricethezav/gitleaks:latest "$@"
 }
 
-nde(){
-  docker run -it --rm \
-    -v "${PWD}:/path" \
-    --source="/path" \
-    --name gitleaks \
-    zricethezav/gitleaks:latest "$@"
-}
-
 # tf(){
 #   docker run -it --rm \
 #     -v "${PWD}:/data" \

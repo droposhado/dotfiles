@@ -1,7 +1,8 @@
-
+{{ if .gui -}}
 if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]]; then
     exec startx
 fi
+{{ end -}}
 
 # Load the shell dotfiles
 for file in ~/.{aliases,gvm/scripts/gvm,exports,exports.local,functions,dockerfunctions}; do
@@ -19,7 +20,7 @@ unset file;
 # _have()
 # {
 #     # Completions for system administrator commands are installed as well in
-#     # case completion is attempted via `sudo command ...'.
+#     # case completion is attempted via `sudo command ...'
 #     type $1 &>/dev/null
 # }
 
@@ -50,7 +51,7 @@ if [[ -f "${HOME}/.deno/env" ]]; then
 fi
 
 # fnm
-FNM_PATH="/home/droposhado/.local/share/fnm"
+FNM_PATH="${HOME}/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="$FNM_PATH:$PATH"
   eval "`fnm env`"
